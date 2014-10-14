@@ -18,7 +18,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:text="@string/signUpHeadLine"
-            android:textColor="@android:color/white"
+            android:textColor="#FFFB00"
             android:textSize="25sp" />
 
         <EditText
@@ -31,7 +31,11 @@
             android:hint="@string/usernameHint"
             android:inputType="text"
             android:maxLength="20"
-            android:textColor="@android:color/white" />
+            android:textColor="#FFFB00"
+            android:textColorHint="@android:color/white" >
+
+            <requestFocus />
+        </EditText>
 
         <EditText
             android:id="@+id/signUpPassword"
@@ -43,7 +47,8 @@
             android:hint="@string/passwordHint"
             android:inputType="textPassword"
             android:maxLength="20"
-            android:textColor="@android:color/white" />
+            android:textColor="#FFFB00"
+            android:textColorHint="@android:color/white" />
 
         <EditText
             android:id="@+id/signUpConfirmPassword"
@@ -55,7 +60,8 @@
             android:hint="@string/confirmPasswordHint"
             android:inputType="textPassword"
             android:maxLength="20"
-            android:textColor="@android:color/white" />
+            android:textColor="#FFFB00"
+            android:textColorHint="@android:color/white" />
 
         <EditText
             android:id="@+id/signUpAge"
@@ -67,7 +73,8 @@
             android:hint="@string/ageHint"
             android:inputType="number"
             android:maxLength="20"
-            android:textColor="@android:color/white" />
+            android:textColor="#FFFB00"
+            android:textColorHint="@android:color/white" />
 
         <RadioGroup
             android:layout_width="fill_parent"
@@ -83,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:onClick="onRadioButtonClicked"
                 android:text="@string/sexMale"
-                android:textColor="@android:color/white" />
+                android:textColor="#FFFB00" />
 
             <RadioButton
                 android:id="@+id/signUpSexFemale"
@@ -91,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:onClick="onRadioButtonClicked"
                 android:text="@string/sexFemale"
-                android:textColor="@android:color/white" />
+                android:textColor="#FFFB00" />
         </RadioGroup>
 
         <EditText
@@ -104,9 +111,8 @@
             android:gravity="center"
             android:hint="@string/phoneNumberHint"
             android:inputType="phone"
-            android:textColor="@android:color/white" >
-
-            <requestFocus />
+            android:textColor="#FFFB00"
+            android:textColorHint="@android:color/white" >
         </EditText>
 
         <Button
@@ -118,7 +124,8 @@
             android:layout_marginTop="10dp"
             android:onClick="register"
             android:text="@string/signup"
-            android:textColor="@android:color/white" />
+            android:textColor="#FFFB00"
+            android:textColorHint="@android:color/white" />
     </LinearLayout>
 
 </ScrollView>

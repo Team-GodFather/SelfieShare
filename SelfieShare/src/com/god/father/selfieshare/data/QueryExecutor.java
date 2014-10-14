@@ -1,7 +1,7 @@
 package com.god.father.selfieshare.data;
 
+import com.god.father.selfieshare.models.SelfieUser;
 import com.telerik.everlive.sdk.core.EverliveApp;
-import com.telerik.everlive.sdk.core.model.system.User;
 import com.telerik.everlive.sdk.core.query.definition.UserSecretInfo;
 import com.telerik.everlive.sdk.core.result.RequestResultCallbackAction;
 
@@ -22,13 +22,22 @@ public class QueryExecutor {
 		return queryExecutor;
 	}
 	
-	public void registerUser(String username, String password)
+	@SuppressWarnings("rawtypes") 
+	public void registerUser(SelfieUser user, String password, RequestResultCallbackAction callback)
 	{
-	   User user = new User();
-	   user.setUsername(username);
-	   UserSecretInfo secretInfo = new UserSecretInfo();
-	   secretInfo.setPassword(password); 
-	   this.everlive.workWith().users().create(user, secretInfo).executeAsync();
+		UserSecretInfo userSecretInfo = new UserSecretInfo();
+        userSecretInfo.setPassword(password);
+
+		this.everlive.workWith().
+        users(SelfieUser.class).
+        create(user, userSecretInfo).
+        executeAsync(callback);
+		
+//	   User user = new User();
+//	   user.setUsername(username);
+//	   UserSecretInfo secretInfo = new UserSecretInfo();
+//	   secretInfo.setPassword(password); 
+//	   this.everlive.workWith().users().create(user, secretInfo).executeAsync();
 	}
 	
 	@SuppressWarnings("rawtypes")
