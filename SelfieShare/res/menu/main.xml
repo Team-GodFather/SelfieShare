@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.god.father.selfieshare.MainActivity" >
+    tools:context="com.godfather.father.selfieshare.MainActivity" >
 
     <item
         android:id="@+id/action_settings"

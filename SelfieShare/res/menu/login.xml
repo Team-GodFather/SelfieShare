@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.god.father.selfieshare.Login" >
+    tools:context="com.godfather.father.selfieshare.Login" >
 
     <item
         android:id="@+id/action_settings"

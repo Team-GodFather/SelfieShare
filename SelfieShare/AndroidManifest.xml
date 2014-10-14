@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.god.father.selfieshare"
+    package="com.godfather.selfieshare"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -17,7 +17,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.god.father.selfieshare.MainActivity"
+            android:name="com.godfather.father.selfieshare.MainActivity"
             android:label="@string/title_activity_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,11 +26,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.god.father.selfieshare.SignUpActivity"
+            android:name="com.godfather.father.selfieshare.SignUpActivity"
             android:label="@string/title_activity_sign_up" >
         </activity>
         <activity
-            android:name="com.god.father.selfieshare.HomeActivity"
+            android:name="com.godfather.father.com.godfather.selfieshare.HomeActivity"
             android:label="@string/title_activity_home" >
         </activity>
     </application>
