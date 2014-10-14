@@ -1,13 +1,13 @@
 package com.godfather.selfieshare;
 
-import android.app.Activity;
-import android.os.Bundle;
+public class HomeActivity extends BaseActivity {
+    @Override
+    protected String getActivityTitle() {
+        return this.getString(R.string.title_activity_home);
+    }
 
-public class HomeActivity extends Activity {
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_home);
-	}
-
+    @Override
+    protected int getActivityLayout() {
+        return R.layout.activity_home;
+    }
 }

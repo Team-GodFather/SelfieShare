@@ -15,7 +15,7 @@ import com.godfather.selfieshare.models.SelfieUser;
 import com.telerik.everlive.sdk.core.result.RequestResult;
 import com.telerik.everlive.sdk.core.result.RequestResultCallbackAction;
 
-public class SignUpActivity extends Activity {
+public class SignUpActivity extends BaseActivity {
 	private static final String WRONG_PASSWORDS_INPUT = "The passwords don't match!";
 	private static final String SHORT_PASSWORD = "Pasword is too short!";
 	private static final String SHORT_USERNAME = "Username is too short!";
@@ -35,12 +35,19 @@ public class SignUpActivity extends Activity {
 	private EditText signUpConfirmPassword;
 	private EditText signUpAge;
 	private EditText signUpPhoneNumber;
+
+    @Override
+    protected String getActivityTitle() {
+        return this.getString(R.string.title_activity_sign_up);
+    }
+
+    @Override
+    protected int getActivityLayout() {
+        return R.layout.activity_sign_up;
+    }
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_sign_up);
-		
+	protected void onCreate() {
 		this.message = new Message(this);
 		this.queryExecutor = QueryExecutor.getInstance();
 		this.sex = "";
