@@ -18,7 +18,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:text="@string/signUpHeadLine"
-            android:textColor="#FFFB00"
+            android:textColor="@android:color/background_dark"
             android:textSize="25sp" />
 
         <EditText
@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:onClick="onRadioButtonClicked"
                 android:text="@string/sexMale"
-                android:textColor="#FFFB00" />
+                android:textColor="@android:color/background_light"/>
 
             <RadioButton
                 android:id="@+id/signUpSexFemale"
@@ -98,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:onClick="onRadioButtonClicked"
                 android:text="@string/sexFemale"
-                android:textColor="#FFFB00" />
+                android:textColor="@android:color/background_light" />
         </RadioGroup>
 
         <EditText
@@ -124,7 +124,7 @@
             android:layout_marginTop="10dp"
             android:onClick="register"
             android:text="@string/signup"
-            android:textColor="#FFFB00"
+            android:textColor="@android:color/background_dark"
             android:textColorHint="@android:color/white" />
     </LinearLayout>
 
