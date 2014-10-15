@@ -18,16 +18,16 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity android:name="com.godfather.selfieshare.MainActivity" >
+        <activity android:name=".activities.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.godfather.selfieshare.SignUpActivity" >
+        <activity android:name=".activities.SignUpActivity" >
         </activity>
-        <activity android:name="com.godfather.selfieshare.HomeActivity" >
+        <activity android:name=".activities.HomeActivity" >
         </activity>
 
         <service
@@ -35,23 +35,23 @@
             android:enabled="true" >
         </service>
         <activity
-            android:name="com.godfather.selfieshare.NearByActivity"
+            android:name=".activities.NearByActivity"
             android:label="@string/title_activity_near_by" >
         </activity>
         <activity
-            android:name="com.godfather.selfieshare.RequestedActivity"
+            android:name=".activities.RequestedActivity"
             android:label="@string/title_activity_requested" >
         </activity>
         <activity
-            android:name="com.godfather.selfieshare.ReceivedActivity"
+            android:name=".activities.ReceivedActivity"
             android:label="@string/title_activity_received" >
         </activity>
         <activity
-            android:name="com.godfather.selfieshare.SettingsActivity"
+            android:name=".activities.SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
         <activity
-            android:name="com.godfather.selfieshare.RequestDetailActivity"
+            android:name=".activities.RequestDetailActivity"
             android:label="@string/title_activity_request_detail" >
         </activity>
     </application>

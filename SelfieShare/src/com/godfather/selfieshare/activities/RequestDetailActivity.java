@@ -1,4 +1,4 @@
-package com.godfather.selfieshare;
+package com.godfather.selfieshare.activities;
 
 import android.app.Activity;
 import android.app.ActionBar;
@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import com.godfather.selfieshare.R;
 
 public class RequestDetailActivity extends Activity {
 

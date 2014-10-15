@@ -1,38 +1,35 @@
-package com.godfather.selfieshare;
+package com.godfather.selfieshare.activities;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.location.LocationManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 
+import com.godfather.selfieshare.R;
 import com.godfather.selfieshare.controllers.CurrentLocationListener;
 import com.godfather.selfieshare.controllers.Message;
 import com.godfather.selfieshare.controllers.SignUpValidator;
 import com.godfather.selfieshare.data.QueryExecutor;
 import com.godfather.selfieshare.models.SelfieUser;
+import com.godfather.selfieshare.models.SexType;
 import com.telerik.everlive.sdk.core.result.RequestResult;
 import com.telerik.everlive.sdk.core.result.RequestResultCallbackAction;
 
 public class SignUpActivity extends BaseActivity implements Button.OnClickListener {
     private static final String WRONG_PASSWORDS_INPUT = "The passwords don't match!";
-    private static final String SHORT_PASSWORD = "Pasword is too short!";
+    private static final String SHORT_PASSWORD = "Password is too short!";
     private static final String SHORT_USERNAME = "Username is too short!";
     private static final String REGISTRATION_SUCCESS = "You have been registered!";
     private static final String REGISTRATION_FILED = "Your registration is rejected!";
-    private static final String SIGNIN_VALIDATION = "Please enter correct data in the fields!";
     private static final String AGE_NOT_IN_RANGE = "Age must be positive number!";
-    private static final String PHONENUMBER_NOT_IN_RANGE = "Phone number must be positive!";
-    private static final String WRONG_SEX_TYPE = "Unknown sex type!";
+    private static final String PHONE_NUMBER_NOT_IN_RANGE = "Phone number must be positive!";
 
-    private LocationManager locationManager;
     private CurrentLocationListener currentLocationListener;
     private Message message;
     private QueryExecutor queryExecutor;
     private ProgressDialog connectionProgressDialog;
-    private String sex;
+    private SexType sex;
     private EditText signUpUsername;
     private EditText signUpPassword;
     private EditText signUpConfirmPassword;
@@ -51,8 +48,8 @@ public class SignUpActivity extends BaseActivity implements Button.OnClickListen
 
 
     @Override
-    protected void onCreate() {
-        this.locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+    protected void create() {
+        LocationManager locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
         this.currentLocationListener = CurrentLocationListener.getInstance();
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, currentLocationListener);
 
@@ -60,7 +57,7 @@ public class SignUpActivity extends BaseActivity implements Button.OnClickListen
 
         this.message = new Message(this);
         this.queryExecutor = QueryExecutor.getInstance();
-        this.sex = "Male";
+        this.sex = SexType.Male;
         this.connectionProgressDialog = new ProgressDialog(this);
         this.connectionProgressDialog.setMessage("Registering...");
 
@@ -92,78 +89,61 @@ public class SignUpActivity extends BaseActivity implements Button.OnClickListen
     public void chooseSex(View view) {
         switch (view.getId()) {
             case R.id.signUpSexMale:
-                this.sex = "Male";
+                this.sex = SexType.Male;
                 break;
             case R.id.signUpSexFemale:
-                this.sex = "Female";
+                this.sex = SexType.Female;
                 break;
         }
     }
 
     public void register(View view) {
-        boolean correctData = true;
         SelfieUser user = new SelfieUser();
         String username = signUpUsername.getText().toString();
         String password = signUpPassword.getText().toString();
         String confirmPassword = signUpConfirmPassword.getText().toString();
+        String age = signUpAge.getText().toString();
+        String phoneNumber = signUpPhoneNumber.getText().toString();
 
-        if (signUpAge.getText().toString().trim().equals("")) {
-            signUpAge.setText("0");
-        }
-        if (signUpPhoneNumber.getText().toString().trim().equals("")) {
-            signUpPhoneNumber.setText("0");
-        }
-
-        int age = Integer.parseInt(signUpAge.getText().toString());
-        long phoneNumber = Long.parseLong(signUpPhoneNumber.getText()
-                .toString());
-
-        if (!SignUpValidator.validateRange(username, password, confirmPassword,
-                age, sex, phoneNumber)) {
-            message.print(SIGNIN_VALIDATION);
-            correctData = false;
-        }
+        StringBuilder stringBuilder = new StringBuilder();
 
         if (!SignUpValidator.validateUsername(username)) {
-            message.print(SHORT_USERNAME);
-            correctData = false;
+            appendLine(stringBuilder, SHORT_USERNAME);
         }
 
         if (!SignUpValidator.validatePassword(password)) {
-            message.print(SHORT_PASSWORD);
-            correctData = false;
+            appendLine(stringBuilder, SHORT_PASSWORD);
         }
 
         if (!SignUpValidator.validatePasswords(password, confirmPassword)) {
-            message.print(WRONG_PASSWORDS_INPUT);
-            correctData = false;
+            appendLine(stringBuilder, WRONG_PASSWORDS_INPUT);
         }
 
         if (!SignUpValidator.validateAge(age)) {
-            message.print(AGE_NOT_IN_RANGE);
-            correctData = false;
-        }
-
-        if (!SignUpValidator.validateSexType(sex)) {
-            message.print(WRONG_SEX_TYPE);
-            correctData = false;
+            appendLine(stringBuilder, AGE_NOT_IN_RANGE);
         }
 
         if (!SignUpValidator.validatePhoneNumber(phoneNumber)) {
-            message.print(PHONENUMBER_NOT_IN_RANGE);
-            correctData = false;
+            appendLine(stringBuilder, PHONE_NUMBER_NOT_IN_RANGE);
         }
 
-        if (correctData) {
+        if (stringBuilder.length() > 0) {
+            stringBuilder.setLength(stringBuilder.length() - 1);
+        }
+
+        String errors = stringBuilder.toString();
+        if (errors.equals("")) {
             user.setUsername(username);
-            user.setAge(age);
-            user.setSex(sex);
-            user.setPhoneNumber(phoneNumber);
+            user.setAge(Integer.parseInt(age));
+            user.setSex(sex.toString());
+            user.setPhoneNumber(Long.parseLong(phoneNumber));
 
             user.setLocation(currentLocationListener.getLocation());
 
             this.connectionProgressDialog.show();
             this.queryExecutor.registerUser(user, password, signUpThread());
+        } else {
+            message.print(errors);
         }
     }
 
@@ -171,13 +151,7 @@ public class SignUpActivity extends BaseActivity implements Button.OnClickListen
         return new RequestResultCallbackAction<Object>() {
             @Override
             public void invoke(RequestResult<Object> requestResult) {
-                final boolean hasErrors;
-
-                if (requestResult.getSuccess()) {
-                    hasErrors = false;
-                } else {
-                    hasErrors = true;
-                }
+                final boolean hasErrors = !requestResult.getSuccess();
 
                 SignUpActivity.this.runOnUiThread(new Runnable() {
                     @Override
@@ -188,8 +162,7 @@ public class SignUpActivity extends BaseActivity implements Button.OnClickListen
                             message.print(REGISTRATION_SUCCESS);
 
                             finish();
-//							Intent intent = new Intent(SignUpActivity.this,
-//									MainActivity.class);
+//							Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
 //							startActivity(intent);
                         } else {
                             message.print(REGISTRATION_FILED);
@@ -198,5 +171,9 @@ public class SignUpActivity extends BaseActivity implements Button.OnClickListen
                 });
             }
         };
+    }
+
+    private void appendLine(StringBuilder stringBuilder, String text) {
+        stringBuilder.append(text).append('\n');
     }
 }

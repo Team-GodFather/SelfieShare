@@ -1,4 +1,4 @@
-package com.godfather.selfieshare;
+package com.godfather.selfieshare.activities;
 
 import android.app.ProgressDialog;
 import android.content.*;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.godfather.selfieshare.R;
 import com.godfather.selfieshare.controllers.LoginValidator;
 import com.godfather.selfieshare.controllers.Message;
 import com.godfather.selfieshare.data.QueryExecutor;
@@ -40,7 +41,7 @@ public class MainActivity extends BaseActivity implements Button.OnClickListener
     }
 
     @Override
-    protected void onCreate() {
+    protected void create() {
         this.message = new Message(this);
         this.queryExecutor = QueryExecutor.getInstance();
         this.connectionProgressDialog = new ProgressDialog(this);
@@ -54,13 +55,25 @@ public class MainActivity extends BaseActivity implements Button.OnClickListener
         this.findViewById(R.id.signUpBtn).setOnClickListener(this);
 
         Intent intent = new Intent(MainActivity.this, MusicService.class);
-        this.bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+        this.bindService(intent, mConnection, BIND_AUTO_CREATE);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+//    @Override
+//    protected void resume() {
+//        if (this.mService != null) {
+//            this.mService.playSong();
+//        }
+//    }
+//
+//    @Override
+//    protected void pause() {
+//        if (this.mService != null) {
+//            this.mService.pauseSong();
+//        }
+//    }
 
+    @Override
+    protected void destroy() {
         this.unbindService(mConnection);
     }
 

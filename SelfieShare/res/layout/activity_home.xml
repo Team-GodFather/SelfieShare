@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context="com.godfather.selfieshare.HomeActivity" >
+    tools:context="com.godfather.selfieshare.activities.HomeActivity" >
 
     <TableLayout
         android:layout_width="match_parent"

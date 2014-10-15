@@ -1,4 +1,4 @@
-package com.godfather.selfieshare;
+package com.godfather.selfieshare.activities;
 
 import java.util.ArrayList;
 
@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.godfather.selfieshare.R;
 import com.godfather.selfieshare.controllers.Message;
 import com.godfather.selfieshare.data.QueryExecutor;
 import com.godfather.selfieshare.models.SelfieUser;
@@ -36,7 +37,7 @@ public class NearByActivity extends BaseActivity {
 	   }
 
 		@Override
-		protected void onCreate() {
+		protected void create() {
 			this.message = new Message(this);
 			this.queryExecutor = QueryExecutor.getInstance();
 			this.connectionProgressDialog = new ProgressDialog(this);

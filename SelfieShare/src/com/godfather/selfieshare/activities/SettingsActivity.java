@@ -1,5 +1,7 @@
-package com.godfather.selfieshare;
+package com.godfather.selfieshare.activities;
 
+
+import com.godfather.selfieshare.R;
 
 public class SettingsActivity extends BaseActivity {
 	@Override

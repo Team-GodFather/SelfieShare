@@ -34,6 +34,12 @@ public class MusicService extends Service {
 		}
 	}
 
+    public void pauseSong() {
+        if (musicPlayer != null && musicPlayer.isPlaying()) {
+            musicPlayer.pause();
+        }
+    }
+
 	@Override
 	public IBinder onBind(Intent intent) {
 		return mBinder;

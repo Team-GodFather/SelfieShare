@@ -1,19 +1,14 @@
-package com.godfather.selfieshare;
+package com.godfather.selfieshare.activities;
 
 import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.IBinder;
 
+import com.godfather.selfieshare.R;
 import com.godfather.selfieshare.utils.ActivityUtils;
-import com.godfather.selfieshare.utils.MusicService;
-import com.godfather.selfieshare.utils.MusicService.LocalBinder;
 
 public abstract class BaseActivity extends Activity {
-	protected final Context context;
+    protected final Context context;
 
     protected BaseActivity() {
         this.context = this;
@@ -28,13 +23,45 @@ public abstract class BaseActivity extends Activity {
         String activityTitle = ActivityUtils.getActivityTitle(appName, this.getActivityTitle());
         this.setTitle(activityTitle);
 
-        this.onCreate();
+        this.create();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        this.destroy();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        this.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        this.resume();
     }
 
     // Abstract
     protected abstract String getActivityTitle();
+
     protected abstract int getActivityLayout();
 
     // Virtual
-    protected void onCreate() {}
+    protected void create() {
+    }
+
+    protected void resume() {
+    }
+
+    protected void pause() {
+    }
+
+    protected void destroy() {
+    }
 }

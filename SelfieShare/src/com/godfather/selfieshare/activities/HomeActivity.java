@@ -1,11 +1,8 @@
-package com.godfather.selfieshare;
+package com.godfather.selfieshare.activities;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
-import android.support.v4.app.FragmentActivity;
 
+import com.godfather.selfieshare.R;
 import com.godfather.selfieshare.controllers.Message;
 import com.godfather.selfieshare.data.QueryExecutor;
 
@@ -14,7 +11,7 @@ public class HomeActivity extends BaseActivity {
 	private QueryExecutor queryExecutor;
 	private ProgressDialog connectionProgressDialog;
 
-	protected void onCreate() {
+	protected void create() {
 		this.message = new Message(this);
 		this.queryExecutor = QueryExecutor.getInstance();
 		this.connectionProgressDialog = new ProgressDialog(this);
