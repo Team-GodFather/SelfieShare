@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="14"
-        android:targetSdkVersion="16" />
+        android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" >
     </uses-permission>
@@ -33,7 +33,7 @@
             android:name="com.godfather.selfieshare.HomeActivity">
         </activity>
         <service
-            android:name="com.god.father.selfieshare.tasks.MusicService"
+            android:name="com.godfather.selfieshare.utils.MusicService"
             android:enabled="true" >
         </service>
     </application>

@@ -1,21 +1,18 @@
 package com.godfather.selfieshare;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.location.LocationManager;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
-import com.god.father.selfieshare.controllers.CurrentLocationListener;
-import com.god.father.selfieshare.controllers.Message;
-import com.god.father.selfieshare.controllers.SignUpValidator;
-import com.god.father.selfieshare.data.QueryExecutor;
-import com.god.father.selfieshare.models.SelfieUser;
-
+import com.godfather.selfieshare.controllers.CurrentLocationListener;
+import com.godfather.selfieshare.controllers.Message;
+import com.godfather.selfieshare.controllers.SignUpValidator;
+import com.godfather.selfieshare.data.QueryExecutor;
+import com.godfather.selfieshare.models.SelfieUser;
 import com.telerik.everlive.sdk.core.result.RequestResult;
 import com.telerik.everlive.sdk.core.result.RequestResultCallbackAction;
 
@@ -55,7 +52,6 @@ public class SignUpActivity extends BaseActivity {
 
 	@Override
 	protected void onCreate() {
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sign_up);
 
 		this.locationManager = (LocationManager) this
@@ -182,10 +178,11 @@ public class SignUpActivity extends BaseActivity {
 
 						if (!hasErrors) {
 							message.print(REGISTRATION_SUCCESS);
-
-							Intent intent = new Intent(SignUpActivity.this,
-									MainActivity.class);
-							startActivity(intent);
+								
+							finish();
+//							Intent intent = new Intent(SignUpActivity.this,
+//									MainActivity.class);
+//							startActivity(intent);
 						} else {
 							message.print(REGISTRATION_FILED);
 						}
