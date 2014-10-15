@@ -2,7 +2,6 @@ package com.godfather.selfieshare;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.location.LocationManager;
 import android.view.View;
 import android.widget.EditText;

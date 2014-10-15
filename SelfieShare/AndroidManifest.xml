@@ -18,24 +18,42 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name="com.godfather.selfieshare.MainActivity">
+        <activity android:name="com.godfather.selfieshare.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.godfather.selfieshare.SignUpActivity">
+        <activity android:name="com.godfather.selfieshare.SignUpActivity" >
         </activity>
-        <activity
-            android:name="com.godfather.selfieshare.HomeActivity">
+        <activity android:name="com.godfather.selfieshare.HomeActivity" >
         </activity>
+
         <service
             android:name="com.godfather.selfieshare.utils.MusicService"
             android:enabled="true" >
         </service>
+        <activity
+            android:name="com.godfather.selfieshare.NearByActivity"
+            android:label="@string/title_activity_near_by" >
+        </activity>
+        <activity
+            android:name="com.godfather.selfieshare.RequestedActivity"
+            android:label="@string/title_activity_requested" >
+        </activity>
+        <activity
+            android:name="com.godfather.selfieshare.ReceivedActivity"
+            android:label="@string/title_activity_received" >
+        </activity>
+        <activity
+            android:name="com.godfather.selfieshare.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+        <activity
+            android:name="com.godfather.selfieshare.RequestDetailActivity"
+            android:label="@string/title_activity_request_detail" >
+        </activity>
     </application>
 
 </manifest>

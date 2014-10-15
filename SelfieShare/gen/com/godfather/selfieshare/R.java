@@ -23,37 +23,65 @@ public final class R {
     }
     public static final class drawable {
         public static final int background=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
-        public static final int icon=0x7f020002;
+        public static final int female=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
+        public static final int icon=0x7f020003;
+        public static final int male=0x7f020004;
     }
     public static final class id {
-        public static final int action_settings=0x7f09000f;
-        public static final int container=0x7f090000;
-        public static final int home=0x7f090001;
-        public static final int loginBtn=0x7f090005;
-        public static final int loginPassword=0x7f090004;
-        public static final int loginUsername=0x7f090003;
-        public static final int signUpAge=0x7f09000b;
-        public static final int signUpBtn=0x7f090006;
-        public static final int signUpConfirmPassword=0x7f09000a;
-        public static final int signUpHeadLine=0x7f090007;
-        public static final int signUpPassword=0x7f090009;
-        public static final int signUpPhoneNumber=0x7f09000e;
-        public static final int signUpSexFemale=0x7f09000d;
-        public static final int signUpSexMale=0x7f09000c;
-        public static final int signUpUsername=0x7f090008;
-        public static final int welcome=0x7f090002;
+        public static final int action_settings=0x7f09001c;
+        public static final int container=0x7f09000e;
+        public static final int home=0x7f090006;
+        public static final int li_listView=0x7f09000d;
+        public static final int loginBtn=0x7f09000a;
+        public static final int loginPassword=0x7f090009;
+        public static final int loginUsername=0x7f090008;
+        public static final int lvi_createDate=0x7f09001a;
+        public static final int lvi_nameDateContainer=0x7f090018;
+        public static final int lvi_postText=0x7f09001b;
+        public static final int lvi_userImage=0x7f090017;
+        public static final int lvi_userName=0x7f090019;
+        public static final int menu=0x7f090000;
+        public static final int menuHome=0x7f090001;
+        public static final int menuNearBy=0x7f090002;
+        public static final int menuRecieved=0x7f090004;
+        public static final int menuRequested=0x7f090003;
+        public static final int menuSettings=0x7f090005;
+        public static final int nearBy=0x7f09000c;
+        public static final int signUpAge=0x7f090013;
+        public static final int signUpBtn=0x7f09000b;
+        public static final int signUpConfirmPassword=0x7f090012;
+        public static final int signUpHeadLine=0x7f09000f;
+        public static final int signUpPassword=0x7f090011;
+        public static final int signUpPhoneNumber=0x7f090016;
+        public static final int signUpSexFemale=0x7f090015;
+        public static final int signUpSexMale=0x7f090014;
+        public static final int signUpUsername=0x7f090010;
+        public static final int welcome=0x7f090007;
     }
     public static final class layout {
         public static final int activity_home=0x7f030000;
         public static final int activity_main=0x7f030001;
-        public static final int activity_sign_up=0x7f030002;
+        public static final int activity_near_by=0x7f030002;
+        public static final int activity_received=0x7f030003;
+        public static final int activity_request_detail=0x7f030004;
+        public static final int activity_requested=0x7f030005;
+        public static final int activity_settings=0x7f030006;
+        public static final int activity_sign_up=0x7f030007;
+        public static final int fragment_menu=0x7f030008;
+        public static final int fragment_request_detail=0x7f030009;
+        public static final int listview_item_row=0x7f03000a;
     }
     public static final class menu {
         public static final int home=0x7f080000;
         public static final int login=0x7f080001;
         public static final int main=0x7f080002;
-        public static final int sign_up=0x7f080003;
+        public static final int near_by=0x7f080003;
+        public static final int received=0x7f080004;
+        public static final int request_detail=0x7f080005;
+        public static final int requested=0x7f080006;
+        public static final int settings=0x7f080007;
+        public static final int sign_up=0x7f080008;
     }
     public static final class raw {
         public static final int selfie=0x7f040000;
@@ -65,9 +93,16 @@ public final class R {
          */
         public static final int app_name=0x7f060000;
         public static final int confirmPasswordHint=0x7f06000b;
+        public static final int hello_blank_fragment=0x7f06001c;
+        public static final int hello_world=0x7f06001b;
+        public static final int home=0x7f060015;
         public static final int login=0x7f060004;
+        public static final int nearBy=0x7f060016;
         public static final int passwordHint=0x7f06000a;
         public static final int phoneNumberHint=0x7f060009;
+        public static final int received=0x7f060018;
+        public static final int requested=0x7f060017;
+        public static final int settings=0x7f060019;
         public static final int sexFemale=0x7f06000e;
         public static final int sexMale=0x7f06000d;
         public static final int signUp=0x7f060005;
@@ -78,9 +113,25 @@ public final class R {
         /**  MainActivity 
          */
         public static final int title_activity_main=0x7f060002;
+        /**  NearByActivity 
+         */
+        public static final int title_activity_near_by=0x7f060010;
+        /**  ReceivedActivity 
+         */
+        public static final int title_activity_received=0x7f060012;
+        public static final int title_activity_request_detail=0x7f06001a;
+        /**  RequestedActivity 
+         */
+        public static final int title_activity_requested=0x7f060011;
+        /**  SettingsActivity 
+         */
+        public static final int title_activity_settings=0x7f060013;
         /**  SignUpActivity 
          */
         public static final int title_activity_sign_up=0x7f060006;
+        /**  Menu 
+         */
+        public static final int title_menu_fragment=0x7f060014;
         public static final int usernameHint=0x7f060008;
         public static final int welcome=0x7f060003;
     }

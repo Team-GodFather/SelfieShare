@@ -1,5 +1,7 @@
 package com.godfather.selfieshare.data;
 
+import java.util.ArrayList;
+
 import com.godfather.selfieshare.models.SelfieUser;
 import com.telerik.everlive.sdk.core.EverliveApp;
 import com.telerik.everlive.sdk.core.query.definition.UserSecretInfo;
@@ -8,10 +10,12 @@ import com.telerik.everlive.sdk.core.result.RequestResultCallbackAction;
 public class QueryExecutor {
 	private static QueryExecutor queryExecutor;
 
+	private final String EVERLIVE_KEY = "vzK1tHn68Q4BHHux";
+	
 	private EverliveApp everlive;
 
 	private QueryExecutor() {
-		this.everlive = new EverliveApp("vzK1tHn68Q4BHHux");
+		this.everlive = new EverliveApp(EVERLIVE_KEY);
 	}
 
 	public static QueryExecutor getInstance() {
@@ -43,6 +47,9 @@ public class QueryExecutor {
 		this.everlive.workWith().authentication().logout().executeAsync(null);
 	}
 	
+	public void getAllUsernames(RequestResultCallbackAction<ArrayList<SelfieUser>> callback) {
+		this.everlive.workWith().users(SelfieUser.class).getAll().executeAsync(callback);
+	}
 	
 
 	// public void getMyUsername() {

@@ -1,8 +1,127 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+    android:id="@+id/menu"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.godfather.selfieshare.HomeActivity"
-    tools:ignore="MergeRootFrame" />
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    tools:context="com.godfather.selfieshare.HomeActivity" >
 
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:shrinkColumns="*"
+        android:stretchColumns="*" >
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_span="3"
+                android:background="#b0b0b0"
+                android:padding="18dip"
+                android:text="Requested:"
+                android:textColor="#000"
+                android:textSize="18dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_span="3"
+                android:background="#b0b0b0"
+                android:inputType="text"
+                android:padding="18dip"
+                android:textColor="#000"
+                android:textSize="18dp" >
+
+                <requestFocus />
+            </EditText>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_span="3"
+                android:background="#b0b0b0"
+                android:padding="18dip"
+                android:text="Received:"
+                android:textColor="#000"
+                android:textSize="18dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_span="3"
+                android:background="#b0b0b0"
+                android:inputType="text"
+                android:padding="18dip"
+                android:textColor="#000"
+                android:textSize="18dp" />
+        </TableRow>
+
+        
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/menuHome"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home" />
+
+        <Button
+            android:id="@+id/menuNearBy"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nearBy" />
+
+        <Button
+            android:id="@+id/menuRequested"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/requested" />
+
+        <Button
+            android:id="@+id/menuRecieved"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/received" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:gravity="bottom|center|end"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/menuSettings"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings" />
+    </LinearLayout>
+    </TableLayout>
+
+</LinearLayout>
