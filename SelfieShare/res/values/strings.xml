@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- App -->
     <string name="app_name">Selfie Share</string>
     <string name="action_settings">Settings</string>
+
+    <!-- MainActivity -->
+    <string name="title_activity_main">Login</string>
+    <string name="welcome">Welcome</string>
     <string name="login">Log In</string>
-    <string name="signup">Sign Up</string>
+    <string name="signUp">Sign Up</string>
+
+    <!-- SignUpActivity -->
+    <string name="title_activity_sign_up">SignUp</string>
     <string name="signUpHeadLine">Registration</string>
     <string name="usernameHint">Username</string>
     <string name="phoneNumberHint">Phone Number</string>
@@ -13,26 +21,8 @@
     <string name="ageHint">Age</string>
     <string name="sexMale">Male</string>
     <string name="sexFemale">Female</string>
-    
-    <string name="welcome">Welcome</string>
-    <string name="movieName">movie name</string>
-    <string name="todo">TODO</string>
-    <string name="screens">Screenings:</string>
-    <string name="book">Book</string>
 
-    <!-- Movie discription page -->
-    <string name="name">Movie name</string>
-    <string name="genre">Genre:</string>
-    <string name="duration">Duration:</string>
-    <string name="year">Year:</string>
-    <string name="director">Director:</string>
-    <string name="actors">Actors:</string>
-    <string name="trailer">Watch Trailer</string>
-    <string name="bookPlace">Book a place</string>
-    <string name="comment">Comment</string>
-    <string name="send">Send</string>
-    <string name="title_activity_main">Login</string>
-    <string name="title_activity_sign_up">Sign Up</string>
+    <!-- HomeActivity -->
     <string name="title_activity_home">Home</string>
 
 </resources>
