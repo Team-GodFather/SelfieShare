@@ -2,7 +2,6 @@ package com.godfather.selfieshare.activities;
 
 import android.app.ProgressDialog;
 import android.content.*;
-import android.os.IBinder;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,18 +10,14 @@ import com.godfather.selfieshare.R;
 import com.godfather.selfieshare.controllers.LoginValidator;
 import com.godfather.selfieshare.controllers.Message;
 import com.godfather.selfieshare.data.QueryExecutor;
-import com.godfather.selfieshare.utils.MusicService;
-import com.godfather.selfieshare.utils.MusicService.LocalBinder;
 import com.telerik.everlive.sdk.core.result.RequestResult;
 import com.telerik.everlive.sdk.core.result.RequestResultCallbackAction;
 
-public class MainActivity extends BaseActivity implements Button.OnClickListener {
+public class MainActivity extends BaseActivity<MainActivity> implements Button.OnClickListener {
     private static final String LOGIN_SUCCESSFUL = "Successful login!";
     private static final String LOGIN_FAILED = "Incorrect username or password!";
     private static final String LOGIN_VALIDATION = "Please enter correct data in the fields!";
 
-    private MusicService mService;
-    private boolean mBound = false;
     private Message message;
     private QueryExecutor queryExecutor;
     private ProgressDialog connectionProgressDialog;
@@ -53,28 +48,6 @@ public class MainActivity extends BaseActivity implements Button.OnClickListener
         // Bind click listeners
         this.findViewById(R.id.loginBtn).setOnClickListener(this);
         this.findViewById(R.id.signUpBtn).setOnClickListener(this);
-
-        Intent intent = new Intent(MainActivity.this, MusicService.class);
-        this.bindService(intent, mConnection, BIND_AUTO_CREATE);
-    }
-
-//    @Override
-//    protected void resume() {
-//        if (this.mService != null) {
-//            this.mService.playSong();
-//        }
-//    }
-//
-//    @Override
-//    protected void pause() {
-//        if (this.mService != null) {
-//            this.mService.pauseSong();
-//        }
-//    }
-
-    @Override
-    protected void destroy() {
-        this.unbindService(mConnection);
     }
 
     @Override
@@ -89,34 +62,15 @@ public class MainActivity extends BaseActivity implements Button.OnClickListener
         }
     }
 
-    private ServiceConnection mConnection = new ServiceConnection() {
-
-        @Override
-        public void onServiceConnected(ComponentName className, IBinder service) {
-            // We've bound to LocalService, cast the IBinder and get
-            // LocalService instance
-            LocalBinder binder = (LocalBinder) service;
-            mService = binder.getService();
-            mBound = true;
-            mService.loadSong(R.raw.selfie);
-            mService.playSong();
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName arg0) {
-            mBound = false;
-        }
-    };
-
     public void login(View view) {
         String username = loginUsername.getText().toString();
         String password = loginPassword.getText().toString();
 
         if (LoginValidator.validate(username, password)) {
-            connectionProgressDialog.show();
-            queryExecutor.loginUser(username, password, loginThread());
+            this.connectionProgressDialog.show();
+            this.queryExecutor.loginUser(username, password, loginThread());
         } else {
-            message.print(LOGIN_VALIDATION);
+            this.message.print(this.LOGIN_VALIDATION);
         }
     }
 
@@ -132,12 +86,12 @@ public class MainActivity extends BaseActivity implements Button.OnClickListener
                         connectionProgressDialog.dismiss();
 
                         if (!hasErrors) {
-                            message.print(LOGIN_SUCCESSFUL);
+                            activity.message.print(activity.LOGIN_SUCCESSFUL);
 
                             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                            startActivity(intent);
+                            activity.startActivity(intent);
                         } else {
-                            message.print(LOGIN_FAILED);
+                            activity.message.print(activity.LOGIN_FAILED);
                         }
                     }
                 });

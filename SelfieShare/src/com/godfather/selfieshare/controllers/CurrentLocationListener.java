@@ -1,65 +1,76 @@
 package com.godfather.selfieshare.controllers;
 
-import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
-import android.widget.Toast;
 
+import com.godfather.selfieshare.data.QueryExecutor;
+import com.godfather.selfieshare.models.SelfieUser;
 import com.telerik.everlive.sdk.core.model.system.GeoPoint;
+import com.telerik.everlive.sdk.core.result.RequestResult;
+import com.telerik.everlive.sdk.core.result.RequestResultCallbackAction;
 
-public class CurrentLocationListener  implements LocationListener{
-	private static CurrentLocationListener currentLocationListener;
-	public Context context;
-	
-	private GeoPoint location = null;
-	
-	private CurrentLocationListener() {
-	}
-	
-	
-	public static CurrentLocationListener getInstance() {
-		if(currentLocationListener == null) {
-			currentLocationListener = new CurrentLocationListener();
-		}
-		
-		return currentLocationListener;
-	}
-	
-	public GeoPoint getLocation() {
-		return location;
-	}
+public class CurrentLocationListener implements LocationListener {
+    private static final long LOCATION_REFRESH_TIME = 60000;
+    private static final float LOCATION_REFRESH_DISTANCE = 0;
+
+    private static CurrentLocationListener currentLocationListener;
+
+    private GeoPoint location = null;
+
+    private CurrentLocationListener() {
+    }
 
 
-	private void setLocation(GeoPoint location) {
-		this.location = location;
-	}
-	
-	@Override
-	public void onLocationChanged(Location location) {
-		 int lat = (int) (location.getLatitude() * 1E6);
-	     int lng = (int) (location.getLongitude() * 1E6);
-	     GeoPoint point = new GeoPoint(lat, lng);
-	     Toast.makeText(context, lat + " " + lng, Toast.LENGTH_LONG)
-			.show();
-	     
-		this.setLocation(point);
-	}
+    public static CurrentLocationListener getInstance() {
+        if (currentLocationListener == null) {
+            currentLocationListener = new CurrentLocationListener();
+        }
 
-	@Override
-	public void onStatusChanged(String provider, int status, Bundle extras) {
-		// TODO Auto-generated method stub
-		
-	}
+        return currentLocationListener;
+    }
 
-	@Override
-	public void onProviderEnabled(String provider) {
-		
-	}
+    public void setLocationManager(LocationManager locationManager) {
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, LOCATION_REFRESH_TIME, LOCATION_REFRESH_DISTANCE, currentLocationListener);
+        currentLocationListener.setLocation(locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER));
+    }
 
-	@Override
-	public void onProviderDisabled(String provider) {
-		this.location = null;
-		currentLocationListener = null;
-	}
+    public GeoPoint getLocation() {
+        return this.location;
+    }
+
+    private void setLocation(final GeoPoint location) {
+        this.location = location;
+
+        QueryExecutor queryExecutor = QueryExecutor.getInstance();
+        queryExecutor.updateCurrentUserLocation(location);
+    }
+
+    private void setLocation(Location location) {
+        int lat = (int) (location.getLatitude() * 1E6);
+        int lng = (int) (location.getLongitude() * 1E6);
+        GeoPoint point = new GeoPoint(lat, lng);
+
+        this.setLocation(point);
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        this.setLocation(location);
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+        this.location = null;
+        currentLocationListener = null;
+    }
 }

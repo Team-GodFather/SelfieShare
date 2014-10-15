@@ -32,15 +32,15 @@ public class SelfieUser extends User {
 	}
 
 	public void setPhoneNumber(Number phoneNumber) {
-		this.phoneNumber = phoneNumber;
+        this.onPropertyChanged("phoneNumber", this.phoneNumber, this.phoneNumber = phoneNumber);
 	}
 
 	public void setAge(Number age) {
-		this.age = age;
+        this.onPropertyChanged("age", this.age, this.age = age);
 	}
 
 	public void setLocation(GeoPoint location) {
-		this.location = location;
+        this.onPropertyChanged("location", this.location, this.location = location);
 	}
 
 	public String getSex() {
@@ -48,6 +48,6 @@ public class SelfieUser extends User {
     }
 
     public void setSex(String sex) {
-        this.sex = sex;
+        this.onPropertyChanged("sex", this.sex, this.sex = sex);
     }
 }

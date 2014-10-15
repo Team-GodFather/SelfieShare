@@ -1,17 +1,24 @@
 package com.godfather.selfieshare.activities;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 
+import com.godfather.selfieshare.data.QueryExecutor;
+import com.godfather.selfieshare.models.SelfieUser;
+import com.telerik.everlive.sdk.core.model.system.GeoPoint;
 import com.godfather.selfieshare.R;
+import com.godfather.selfieshare.controllers.CurrentLocationListener;
 import com.godfather.selfieshare.utils.ActivityUtils;
 
-public abstract class BaseActivity extends Activity {
-    protected final Context context;
+public abstract class BaseActivity<TActivity> extends Activity {
 
+    protected static final CurrentLocationListener currentLocationListener = CurrentLocationListener.getInstance();
+
+    protected final TActivity activity;
+
+    @SuppressWarnings("unchecked")
     protected BaseActivity() {
-        this.context = this;
+        this.activity = (TActivity) this;
     }
 
     @Override
@@ -43,6 +50,11 @@ public abstract class BaseActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        // Get user position
+        GeoPoint currentLocation = BaseActivity.currentLocationListener.getLocation();
+        QueryExecutor queryExecutor = QueryExecutor.getInstance();
+        queryExecutor.updateCurrentUserLocation(currentLocation);
 
         this.resume();
     }

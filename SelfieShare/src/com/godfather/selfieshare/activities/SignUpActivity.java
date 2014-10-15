@@ -1,13 +1,11 @@
 package com.godfather.selfieshare.activities;
 
 import android.app.ProgressDialog;
-import android.location.LocationManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.godfather.selfieshare.R;
-import com.godfather.selfieshare.controllers.CurrentLocationListener;
 import com.godfather.selfieshare.controllers.Message;
 import com.godfather.selfieshare.controllers.SignUpValidator;
 import com.godfather.selfieshare.data.QueryExecutor;
@@ -16,7 +14,7 @@ import com.godfather.selfieshare.models.SexType;
 import com.telerik.everlive.sdk.core.result.RequestResult;
 import com.telerik.everlive.sdk.core.result.RequestResultCallbackAction;
 
-public class SignUpActivity extends BaseActivity implements Button.OnClickListener {
+public class SignUpActivity extends BaseActivity<SignUpActivity> implements Button.OnClickListener {
     private static final String WRONG_PASSWORDS_INPUT = "The passwords don't match!";
     private static final String SHORT_PASSWORD = "Password is too short!";
     private static final String SHORT_USERNAME = "Username is too short!";
@@ -25,7 +23,6 @@ public class SignUpActivity extends BaseActivity implements Button.OnClickListen
     private static final String AGE_NOT_IN_RANGE = "Age must be positive number!";
     private static final String PHONE_NUMBER_NOT_IN_RANGE = "Phone number must be positive!";
 
-    private CurrentLocationListener currentLocationListener;
     private Message message;
     private QueryExecutor queryExecutor;
     private ProgressDialog connectionProgressDialog;
@@ -49,12 +46,6 @@ public class SignUpActivity extends BaseActivity implements Button.OnClickListen
 
     @Override
     protected void create() {
-        LocationManager locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
-        this.currentLocationListener = CurrentLocationListener.getInstance();
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, currentLocationListener);
-
-        this.currentLocationListener.context = this;
-
         this.message = new Message(this);
         this.queryExecutor = QueryExecutor.getInstance();
         this.sex = SexType.Male;
@@ -99,32 +90,32 @@ public class SignUpActivity extends BaseActivity implements Button.OnClickListen
 
     public void register(View view) {
         SelfieUser user = new SelfieUser();
-        String username = signUpUsername.getText().toString();
-        String password = signUpPassword.getText().toString();
-        String confirmPassword = signUpConfirmPassword.getText().toString();
-        String age = signUpAge.getText().toString();
-        String phoneNumber = signUpPhoneNumber.getText().toString();
+        String username = this.signUpUsername.getText().toString();
+        String password = this.signUpPassword.getText().toString();
+        String confirmPassword = this.signUpConfirmPassword.getText().toString();
+        String age = this.signUpAge.getText().toString();
+        String phoneNumber = this.signUpPhoneNumber.getText().toString();
 
         StringBuilder stringBuilder = new StringBuilder();
 
         if (!SignUpValidator.validateUsername(username)) {
-            appendLine(stringBuilder, SHORT_USERNAME);
+            appendLine(stringBuilder, this.SHORT_USERNAME);
         }
 
         if (!SignUpValidator.validatePassword(password)) {
-            appendLine(stringBuilder, SHORT_PASSWORD);
+            appendLine(stringBuilder, this.SHORT_PASSWORD);
         }
 
         if (!SignUpValidator.validatePasswords(password, confirmPassword)) {
-            appendLine(stringBuilder, WRONG_PASSWORDS_INPUT);
+            appendLine(stringBuilder, this.WRONG_PASSWORDS_INPUT);
         }
 
         if (!SignUpValidator.validateAge(age)) {
-            appendLine(stringBuilder, AGE_NOT_IN_RANGE);
+            appendLine(stringBuilder, this.AGE_NOT_IN_RANGE);
         }
 
         if (!SignUpValidator.validatePhoneNumber(phoneNumber)) {
-            appendLine(stringBuilder, PHONE_NUMBER_NOT_IN_RANGE);
+            appendLine(stringBuilder, this.PHONE_NUMBER_NOT_IN_RANGE);
         }
 
         if (stringBuilder.length() > 0) {
@@ -137,13 +128,12 @@ public class SignUpActivity extends BaseActivity implements Button.OnClickListen
             user.setAge(Integer.parseInt(age));
             user.setSex(sex.toString());
             user.setPhoneNumber(Long.parseLong(phoneNumber));
-
-            user.setLocation(currentLocationListener.getLocation());
+            user.setLocation(BaseActivity.currentLocationListener.getLocation());
 
             this.connectionProgressDialog.show();
             this.queryExecutor.registerUser(user, password, signUpThread());
         } else {
-            message.print(errors);
+            this.message.print(errors);
         }
     }
 
@@ -156,16 +146,14 @@ public class SignUpActivity extends BaseActivity implements Button.OnClickListen
                 SignUpActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        connectionProgressDialog.dismiss();
+                        activity.connectionProgressDialog.dismiss();
 
                         if (!hasErrors) {
-                            message.print(REGISTRATION_SUCCESS);
+                            activity.message.print(REGISTRATION_SUCCESS);
 
-                            finish();
-//							Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
-//							startActivity(intent);
+                            activity.finish();
                         } else {
-                            message.print(REGISTRATION_FILED);
+                            activity.message.print(REGISTRATION_FILED);
                         }
                     }
                 });

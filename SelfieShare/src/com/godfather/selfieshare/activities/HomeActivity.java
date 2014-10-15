@@ -6,7 +6,7 @@ import com.godfather.selfieshare.R;
 import com.godfather.selfieshare.controllers.Message;
 import com.godfather.selfieshare.data.QueryExecutor;
 
-public class HomeActivity extends BaseActivity {
+public class HomeActivity extends BaseActivity<HomeActivity> {
 	private Message message;
 	private QueryExecutor queryExecutor;
 	private ProgressDialog connectionProgressDialog;
