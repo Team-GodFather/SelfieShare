@@ -31,9 +31,8 @@
     <string name="bookPlace">Book a place</string>
     <string name="comment">Comment</string>
     <string name="send">Send</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="title_activity_sign_up">SignUpActivity</string>
-    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_main">Login</string>
+    <string name="title_activity_sign_up">Sign Up</string>
+    <string name="title_activity_home">Home</string>
 
 </resources>

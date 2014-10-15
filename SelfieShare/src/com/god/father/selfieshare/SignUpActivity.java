@@ -2,12 +2,15 @@ package com.god.father.selfieshare;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
+import com.god.father.selfieshare.controllers.CurrentLocationListener;
 import com.god.father.selfieshare.controllers.Message;
 import com.god.father.selfieshare.controllers.SignUpValidator;
 import com.god.father.selfieshare.data.QueryExecutor;
@@ -26,6 +29,8 @@ public class SignUpActivity extends Activity {
 	private static final String PHONENUMBER_NOT_IN_RANGE = "Phone number must be positive!";
 	private static final String WRONG_SEX_TYPE = "Unknown sex type!";
 
+	private LocationManager locationManager;
+	private CurrentLocationListener currentLocationListener;
 	private Message message;
 	private QueryExecutor queryExecutor;
 	private ProgressDialog connectionProgressDialog;
@@ -35,107 +40,116 @@ public class SignUpActivity extends Activity {
 	private EditText signUpConfirmPassword;
 	private EditText signUpAge;
 	private EditText signUpPhoneNumber;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sign_up);
+
+		this.locationManager = (LocationManager) this
+				.getSystemService(Context.LOCATION_SERVICE);
+		this.currentLocationListener = CurrentLocationListener.getInstance();
+		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0,
+				0, currentLocationListener);
 		
+		this.currentLocationListener.context = this;
+
 		this.message = new Message(this);
 		this.queryExecutor = QueryExecutor.getInstance();
 		this.sex = "";
 		this.connectionProgressDialog = new ProgressDialog(this);
 		this.connectionProgressDialog.setMessage("Registering...");
-		
+
 		this.signUpUsername = (EditText) findViewById(R.id.signUpUsername);
-		this.signUpPassword= (EditText) findViewById(R.id.signUpPassword);
+		this.signUpPassword = (EditText) findViewById(R.id.signUpPassword);
 		this.signUpConfirmPassword = (EditText) findViewById(R.id.signUpConfirmPassword);
 		this.signUpAge = (EditText) findViewById(R.id.signUpAge);
 		this.signUpPhoneNumber = (EditText) findViewById(R.id.signUpPhoneNumber);
 	}
-	
+
 	public void onRadioButtonClicked(View view) {
-	    boolean checked = ((RadioButton) view).isChecked();
-	    
-	    switch(view.getId()) {
-	        case R.id.signUpSexMale:
-	            if (checked)
-	            {
-	            	this.sex = "Male";
-	            }
-	            break;
-	        case R.id.signUpSexFemale:
-	            if (checked)
-	            {
-	            	this.sex = "Female";
-	            }
-	            break;
-	    }
+		boolean checked = ((RadioButton) view).isChecked();
+
+		switch (view.getId()) {
+		case R.id.signUpSexMale:
+			if (checked) {
+				this.sex = "Male";
+			}
+			break;
+		case R.id.signUpSexFemale:
+			if (checked) {
+				this.sex = "Female";
+			}
+			break;
+		}
 	}
-	
+
 	public void register(View view) {
 		boolean correctData = true;
 		SelfieUser user = new SelfieUser();
 		String username = signUpUsername.getText().toString();
 		String password = signUpPassword.getText().toString();
 		String confirmPassword = signUpConfirmPassword.getText().toString();
-		
+
 		if (signUpAge.getText().toString().trim().equals("")) {
-			signUpAge.setText("0");	
+			signUpAge.setText("0");
 		}
 		if (signUpPhoneNumber.getText().toString().trim().equals("")) {
-			signUpPhoneNumber.setText("0");	
+			signUpPhoneNumber.setText("0");
 		}
-		
+
 		int age = Integer.parseInt(signUpAge.getText().toString());
-		long phoneNumber = Long.parseLong(signUpPhoneNumber.getText().toString());
-		
-		if(!SignUpValidator.validateRange(username, password, confirmPassword, age, sex, phoneNumber)) {
+		long phoneNumber = Long.parseLong(signUpPhoneNumber.getText()
+				.toString());
+
+		if (!SignUpValidator.validateRange(username, password, confirmPassword,
+				age, sex, phoneNumber)) {
 			message.print(SIGNIN_VALIDATION);
 			correctData = false;
 		}
-		
-		if(!SignUpValidator.validateUsername(username)) {
+
+		if (!SignUpValidator.validateUsername(username)) {
 			message.print(SHORT_USERNAME);
 			correctData = false;
 		}
-		
-		if(!SignUpValidator.validatePassword(password)) {
+
+		if (!SignUpValidator.validatePassword(password)) {
 			message.print(SHORT_PASSWORD);
 			correctData = false;
 		}
-		
-		if(!SignUpValidator.validatePasswords(password, confirmPassword)) {
+
+		if (!SignUpValidator.validatePasswords(password, confirmPassword)) {
 			message.print(WRONG_PASSWORDS_INPUT);
 			correctData = false;
 		}
-		
-		if(!SignUpValidator.validateAge(age)) {
+
+		if (!SignUpValidator.validateAge(age)) {
 			message.print(AGE_NOT_IN_RANGE);
 			correctData = false;
 		}
-		
-		if(!SignUpValidator.validateSexType(sex)) {
+
+		if (!SignUpValidator.validateSexType(sex)) {
 			message.print(WRONG_SEX_TYPE);
 			correctData = false;
 		}
-		
-		if(!SignUpValidator.validatePhoneNumber(phoneNumber)) {
+
+		if (!SignUpValidator.validatePhoneNumber(phoneNumber)) {
 			message.print(PHONENUMBER_NOT_IN_RANGE);
 			correctData = false;
 		}
-		
-		if(correctData) {
+
+		if (correctData) {
 			user.setUsername(username);
 			user.setAge(age);
 			user.setSex(sex);
 			user.setPhoneNumber(phoneNumber);
-			
-			this.connectionProgressDialog.show();	
+
+			user.setLocation(currentLocationListener.getLocation());
+
+			this.connectionProgressDialog.show();
 			this.queryExecutor.registerUser(user, password, signUpThread());
 		}
 	}
-
 
 	public RequestResultCallbackAction<?> signUpThread() {
 		return new RequestResultCallbackAction<Object>() {
@@ -168,5 +182,4 @@ public class SignUpActivity extends Activity {
 			}
 		};
 	}
-	
 }
