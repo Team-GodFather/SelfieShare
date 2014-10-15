@@ -83,13 +83,13 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:checkedButton="@+id/signUpSexMale" >
 
             <RadioButton
                 android:id="@+id/signUpSexMale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
                 android:text="@string/sexMale"
                 android:textColor="@android:color/background_light"/>
 
@@ -97,7 +97,6 @@
                 android:id="@+id/signUpSexFemale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
                 android:text="@string/sexFemale"
                 android:textColor="@android:color/background_light" />
         </RadioGroup>
@@ -123,7 +122,6 @@
             android:layout_gravity="center|bottom"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
-            android:onClick="register"
             android:text="@string/signUp"
             android:textColor="@android:color/background_dark"
             android:textColorHint="@android:color/white" />

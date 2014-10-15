@@ -37,8 +37,6 @@ public class NearByActivity extends BaseActivity {
 
 		@Override
 		protected void onCreate() {
-			setContentView(R.layout.activity_home);
-			
 			this.message = new Message(this);
 			this.queryExecutor = QueryExecutor.getInstance();
 			this.connectionProgressDialog = new ProgressDialog(this);

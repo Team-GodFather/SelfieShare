@@ -13,7 +13,12 @@ import com.godfather.selfieshare.utils.MusicService;
 import com.godfather.selfieshare.utils.MusicService.LocalBinder;
 
 public abstract class BaseActivity extends Activity {
-	
+	protected final Context context;
+
+    protected BaseActivity() {
+        this.context = this;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
