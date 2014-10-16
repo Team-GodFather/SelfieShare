@@ -81,7 +81,7 @@ public class NearByFragment extends Fragment implements AdapterView.OnItemClickL
     }
 
     private void loadUsers(final ListView target, final NearByFragment listActivity) {
-        this.queryExecutor.getAllUserNames(new RequestResultCallbackAction<ArrayList<SelfieUser>>() {
+        this.queryExecutor.getNearByUsers(new RequestResultCallbackAction<ArrayList<SelfieUser>>() {
             @Override
             public void invoke(RequestResult<ArrayList<SelfieUser>> requestResult) {
                 if (requestResult.getSuccess()) {
@@ -89,6 +89,7 @@ public class NearByFragment extends Fragment implements AdapterView.OnItemClickL
                     for (SelfieUser user : requestResult.getValue()) {
                         listActivity.getUsers().add(user);
                     }
+
                     target.post(new Runnable() {
                         @Override
                         public void run() {
@@ -96,7 +97,7 @@ public class NearByFragment extends Fragment implements AdapterView.OnItemClickL
                         }
                     });
                 } else {
-
+                    // TODO: Handle error
                 }
             }
         });

@@ -111,16 +111,50 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="NearByFragment.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="NearByFragment.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/godfather/selfieshare/fragments/NearByFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.42544731" vertical-offset="568" max-vertical-offset="1734">
-              <caret line="48" column="68" selection-start-line="48" selection-start-column="68" selection-end-line="48" selection-end-column="68" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1180" max-vertical-offset="1802">
+              <caret line="86" column="49" selection-start-line="86" selection-start-column="49" selection-end-line="86" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1154#1155#0" expanded="true" />
                 <element signature="e#1182#1183#0" expanded="true" />
+                <element signature="e#3066#3856#0" expanded="true" />
+                <element signature="e#3845#3846#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QueryExecutor.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/godfather/selfieshare/data/QueryExecutor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1497" max-vertical-offset="2924">
+              <caret line="129" column="64" selection-start-line="129" selection-start-column="64" selection-end-line="129" selection-end-column="64" />
+              <folding>
+                <element signature="e#3588#3617#0" expanded="true" />
+                <element signature="e#3963#3992#0" expanded="true" />
+                <element signature="e#4231#4677#0" expanded="true" />
+                <element signature="e#4295#4325#0" expanded="true" />
+                <element signature="e#4658#4659#0" expanded="true" />
+                <element signature="e#5789#5801#0" expanded="true" />
+                <element signature="e#6748#6749#0" expanded="true" />
+                <element signature="e#7769#7770#0" expanded="true" />
+                <element signature="e#7815#7816#0" expanded="true" />
+                <element signature="e#7915#7916#0" expanded="true" />
+                <element signature="e#7961#7962#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CurrentLocationListener.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/godfather/selfieshare/controllers/CurrentLocationListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.33265308" vertical-offset="432" max-vertical-offset="1139">
+              <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -133,16 +167,6 @@
               <folding>
                 <element signature="e#1582#1597#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserAdapter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/godfather/selfieshare/utils/UserAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.65625" vertical-offset="255" max-vertical-offset="1479">
-              <caret line="27" column="11" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="11" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -191,7 +215,6 @@
         <option value="$PROJECT_DIR$/src/com/godfather/selfieshare/utils/GlobalCallbacks.java" />
         <option value="$PROJECT_DIR$/src/com/godfather/selfieshare/controllers/CurrentLocationListener.java" />
         <option value="$PROJECT_DIR$/src/com/godfather/selfieshare/activities/BaseActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/godfather/selfieshare/data/QueryExecutor.java" />
         <option value="$PROJECT_DIR$/res/layout/fragment_menu.xml" />
         <option value="$PROJECT_DIR$/res/layout/activity_received.xml" />
         <option value="$PROJECT_DIR$/res/layout/activity_requested.xml" />
@@ -215,6 +238,7 @@
         <option value="$PROJECT_DIR$/src/com/godfather/selfieshare/activities/HomeActivity.java" />
         <option value="$PROJECT_DIR$/res/layout/listview_item_row.xml" />
         <option value="$PROJECT_DIR$/src/com/godfather/selfieshare/fragments/NearByFragment.java" />
+        <option value="$PROJECT_DIR$/src/com/godfather/selfieshare/data/QueryExecutor.java" />
       </list>
     </option>
   </component>
@@ -734,15 +758,15 @@
       <workItem from="1413462638267" duration="214000" />
       <workItem from="1413462873900" duration="396000" />
       <workItem from="1413463288758" duration="8021000" />
-      <workItem from="1413471629652" duration="5104000" />
+      <workItem from="1413471629652" duration="8218000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49964000" />
+    <option name="totallyTimeSpent" value="53078000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1181" height="1040" extended-state="6" />
+    <frame x="-8" y="-8" width="1181" height="1040" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -764,7 +788,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.24932976" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26362824" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26362824" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32741398" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297587" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" x="92" y="92" width="981" height="840" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -841,7 +865,7 @@
           <properties uncaughtOnly="true" />
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="35" />
+      <option name="time" value="37" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -971,16 +995,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/godfather/selfieshare/data/QueryExecutor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.1575985" vertical-offset="0" max-vertical-offset="1836">
-          <caret line="115" column="5" selection-start-line="115" selection-start-column="5" selection-end-line="115" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/drawable-xxhdpi/ic_action_computer.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1088,14 +1102,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/godfather/selfieshare/controllers/CurrentLocationListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5125" vertical-offset="240" max-vertical-offset="1139">
-          <caret line="42" column="55" selection-start-line="42" selection-start-column="55" selection-end-line="42" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/fragment_requested.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -1174,22 +1180,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/godfather/selfieshare/utils/UserAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.65625" vertical-offset="255" max-vertical-offset="1479">
-          <caret line="27" column="11" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/godfather/selfieshare/activities/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1508313" vertical-offset="0" max-vertical-offset="1564">
-          <caret line="72" column="54" selection-start-line="72" selection-start-column="54" selection-end-line="72" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/godfather/selfieshare/utils/ActivityUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.1173763" vertical-offset="0" max-vertical-offset="869">
@@ -1203,16 +1193,6 @@
         <state vertical-scroll-proportion="0.5304948" vertical-offset="236" max-vertical-offset="2533">
           <caret line="57" column="65" selection-start-line="57" selection-start-column="65" selection-end-line="57" selection-end-column="65" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/godfather/selfieshare/activities/HomeActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="797" max-vertical-offset="1598">
-          <caret line="96" column="50" selection-start-line="96" selection-start-column="50" selection-end-line="96" selection-end-column="50" />
-          <folding>
-            <element signature="e#1582#1597#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1237,15 +1217,71 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/godfather/selfieshare/utils/UserAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.18046708" vertical-offset="255" max-vertical-offset="1479">
+          <caret line="27" column="11" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/godfather/selfieshare/activities/HomeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="797" max-vertical-offset="1598">
+          <caret line="96" column="50" selection-start-line="96" selection-start-column="50" selection-end-line="96" selection-end-column="50" />
+          <folding>
+            <element signature="e#1582#1597#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/godfather/selfieshare/fragments/NearByFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42544731" vertical-offset="568" max-vertical-offset="1734">
-          <caret line="48" column="68" selection-start-line="48" selection-start-column="68" selection-end-line="48" selection-end-column="68" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1180" max-vertical-offset="1802">
+          <caret line="86" column="49" selection-start-line="86" selection-start-column="49" selection-end-line="86" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1154#1155#0" expanded="true" />
             <element signature="e#1182#1183#0" expanded="true" />
+            <element signature="e#3066#3856#0" expanded="true" />
+            <element signature="e#3845#3846#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/godfather/selfieshare/activities/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12127236" vertical-offset="908" max-vertical-offset="1564">
+          <caret line="72" column="54" selection-start-line="72" selection-start-column="54" selection-end-line="72" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/godfather/selfieshare/data/QueryExecutor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1497" max-vertical-offset="2924">
+          <caret line="129" column="64" selection-start-line="129" selection-start-column="64" selection-end-line="129" selection-end-column="64" />
+          <folding>
+            <element signature="e#3588#3617#0" expanded="true" />
+            <element signature="e#3963#3992#0" expanded="true" />
+            <element signature="e#4231#4677#0" expanded="true" />
+            <element signature="e#4295#4325#0" expanded="true" />
+            <element signature="e#4658#4659#0" expanded="true" />
+            <element signature="e#5789#5801#0" expanded="true" />
+            <element signature="e#6748#6749#0" expanded="true" />
+            <element signature="e#7769#7770#0" expanded="true" />
+            <element signature="e#7815#7816#0" expanded="true" />
+            <element signature="e#7915#7916#0" expanded="true" />
+            <element signature="e#7961#7962#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/godfather/selfieshare/controllers/CurrentLocationListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33265308" vertical-offset="432" max-vertical-offset="1139">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
