@@ -32,8 +32,8 @@ public class CurrentLocationListener implements LocationListener {
     }
 
     public void setLocationManager(LocationManager locationManager) {
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, LOCATION_REFRESH_TIME, LOCATION_REFRESH_DISTANCE, currentLocationListener);
-        currentLocationListener.setLocation(locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER));
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, LOCATION_REFRESH_TIME, LOCATION_REFRESH_DISTANCE, currentLocationListener);
+        currentLocationListener.setLocation(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
     }
 
     public GeoPoint getLocation() {
@@ -48,9 +48,7 @@ public class CurrentLocationListener implements LocationListener {
     }
 
     private void setLocation(Location location) {
-        int lat = (int) (location.getLatitude() * 1E6);
-        int lng = (int) (location.getLongitude() * 1E6);
-        GeoPoint point = new GeoPoint(lat, lng);
+        GeoPoint point = new GeoPoint(location.getLatitude(), location.getLongitude());
 
         this.setLocation(point);
     }

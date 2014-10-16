@@ -1,12 +1,12 @@
-package com.godfather.selfieshare.activities;
+package com.godfather.selfieshare.fragments;
 
-import java.util.ArrayList;
-
-import android.app.ActionBar;
 import android.app.ProgressDialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -19,8 +19,9 @@ import com.godfather.selfieshare.utils.UserAdapter;
 import com.telerik.everlive.sdk.core.result.RequestResult;
 import com.telerik.everlive.sdk.core.result.RequestResultCallbackAction;
 
+import java.util.ArrayList;
 
-public class NearByActivity extends BaseActivity<NearByActivity> implements AdapterView.OnItemClickListener {
+public class NearByFragment extends Fragment implements AdapterView.OnItemClickListener {
     private ArrayList<SelfieUser> users;
     private UserAdapter usersAdapter;
 
@@ -37,29 +38,32 @@ public class NearByActivity extends BaseActivity<NearByActivity> implements Adap
     }
 
     @Override
-    protected void create() {
-        this.message = new Message(this);
-        this.queryExecutor = QueryExecutor.getInstance();
-        this.connectionProgressDialog = new ProgressDialog(this);
-        this.connectionProgressDialog.setMessage("Logging out...");
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
 
+//        Context context = getActivity();
 
-        ListView listView = (ListView) findViewById(R.id.li_listView);
-        this.users = new ArrayList<SelfieUser>();
-        this.usersAdapter = new UserAdapter(this, R.layout.listview_item_row, users);
+//        this.message = new Message(context);
+//        this.queryExecutor = QueryExecutor.getInstance();
+//        this.connectionProgressDialog = new ProgressDialog(context);
+//        this.connectionProgressDialog.setMessage("Logging out...");
+//
+//        ListView listView = (ListView) getView().findViewById(R.id.li_listView);
+//        this.users = new ArrayList<SelfieUser>();
+//        this.usersAdapter = new UserAdapter(context, R.layout.listview_item_row, users);
+//
+//        listView.setAdapter(usersAdapter);
+//
+//        this.loadUsers(listView, this);
+//
+//        listView.setOnItemClickListener(this);
+    }
 
-        listView.setAdapter(usersAdapter);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_near_by, container, false);
 
-        ActionBar actionBar = this.getActionBar();
-
-        assert actionBar != null;
-        actionBar.setDisplayShowHomeEnabled(false);
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.argb(255, 52, 73, 94)));
-
-        this.loadUsers(listView, this);
-
-        listView.setOnItemClickListener(this);
+        return rootView;
     }
 
     @Override
@@ -74,7 +78,7 @@ public class NearByActivity extends BaseActivity<NearByActivity> implements Adap
         }
     }
 
-    private void loadUsers(final ListView target, final NearByActivity listActivity) {
+    private void loadUsers(final ListView target, final NearByFragment listActivity) {
         this.queryExecutor.getAllUserNames(new RequestResultCallbackAction<ArrayList<SelfieUser>>() {
             @Override
             public void invoke(RequestResult<ArrayList<SelfieUser>> requestResult) {
@@ -94,16 +98,5 @@ public class NearByActivity extends BaseActivity<NearByActivity> implements Adap
                 }
             }
         });
-    }
-
-
-    @Override
-    protected String getActivityTitle() {
-        return this.getString(R.string.title_activity_near_by);
-    }
-
-    @Override
-    protected int getActivityLayout() {
-        return R.layout.activity_near_by;
     }
 }

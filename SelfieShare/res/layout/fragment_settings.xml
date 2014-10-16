@@ -3,9 +3,10 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_weight="8"
+    android:background="@android:color/holo_purple"
     android:orientation="vertical"
-    android:weightSum="8"
-    tools:context="com.godfather.selfieshare.activities.ReceivedActivity"
+    tools:context="com.godfather.selfieshare.activities.SettingsActivity"
     tools:ignore="MergeRootFrame" >
 
     <LinearLayout
@@ -13,14 +14,5 @@
         android:layout_height="match_parent"
         android:layout_weight="7"
         android:orientation="vertical" >
-
     </LinearLayout>
-
-    <fragment
-        android:id="@+id/footer_requested"
-        android:name="com.godfather.selfieshare.fragments.MenuFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
-
 </LinearLayout>

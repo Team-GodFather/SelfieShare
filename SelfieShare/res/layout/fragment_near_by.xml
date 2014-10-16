@@ -4,10 +4,10 @@
     android:id="@+id/nearBy"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@android:color/holo_green_dark"
     android:orientation="vertical"
     android:weightSum="8"
-    tools:context="com.godfather.selfieshare.activities.NearByActivity" >
+    tools:context="com.godfather.selfieshare.fragments.NearByFragment" >
 
     <ListView
         android:id="@+id/li_listView"
@@ -16,12 +16,4 @@
         android:layout_weight="7"
         android:paddingLeft="12dp"
         android:paddingRight="12dp" />
-
-    <fragment
-        android:id="@+id/footer_near_by"
-        android:name="com.godfather.selfieshare.fragments.MenuFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
-
 </LinearLayout>

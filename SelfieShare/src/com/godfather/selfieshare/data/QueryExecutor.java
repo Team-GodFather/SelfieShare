@@ -3,7 +3,9 @@ package com.godfather.selfieshare.data;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import com.godfather.selfieshare.controllers.CurrentLocationListener;
 import com.godfather.selfieshare.models.SelfieUser;
+import com.godfather.selfieshare.utils.GlobalCallbacks;
 import com.telerik.everlive.sdk.core.EverliveApp;
 import com.telerik.everlive.sdk.core.model.system.GeoPoint;
 import com.telerik.everlive.sdk.core.model.system.User;
@@ -38,6 +40,11 @@ public class QueryExecutor {
             final boolean hasErrors = !requestResult.getSuccess();
             if (!hasErrors) {
                 currentUser = requestResult.getValue();
+
+                // Set user position on login
+                GeoPoint currentLocation = CurrentLocationListener.getInstance().getLocation();
+                QueryExecutor queryExecutor = QueryExecutor.getInstance();
+                queryExecutor.updateCurrentUserLocation(currentLocation);
             }
         }
     };
@@ -70,7 +77,8 @@ public class QueryExecutor {
     }
 
     public void updateUser(SelfieUser updatedUser, UUID userId) {
-        app.workWith().data(SelfieUser.class).updateById(userId, updatedUser).executeAsync();
+        app.workWith().users(SelfieUser.class).updateById(userId, updatedUser)
+                .executeAsync(GlobalCallbacks.logResult);
     }
 
     @SuppressWarnings("rawtypes")
@@ -106,12 +114,5 @@ public class QueryExecutor {
     public void getAllUserNames(RequestResultCallbackAction<ArrayList<SelfieUser>> callback) {
         this.app.workWith().users(SelfieUser.class).getAll().executeAsync(callback);
     }
-
-
-    // public void getMyUsername() {
-    // User myUser =
-    // (User)this.app.workWith().users().getMe().executeSync();
-    // Log.i("App_name", "My Username: " + myUser.getUsername());
-    // }
 }
 

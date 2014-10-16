@@ -8,7 +8,7 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="19" />
 
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -32,26 +32,6 @@
             android:name="com.godfather.selfieshare.utils.MusicService"
             android:enabled="true">
         </service>
-        <activity
-            android:name=".activities.NearByActivity"
-            android:label="@string/title_activity_near_by" >
-        </activity>
-        <activity
-            android:name=".activities.RequestedActivity"
-            android:label="@string/title_activity_requested" >
-        </activity>
-        <activity
-            android:name=".activities.ReceivedActivity"
-            android:label="@string/title_activity_received" >
-        </activity>
-        <activity
-            android:name=".activities.SettingsActivity"
-            android:label="@string/title_activity_settings" >
-        </activity>
-        <activity
-            android:name=".activities.RequestDetailActivity"
-            android:label="@string/title_activity_request_detail" >
-        </activity>
     </application>
 
 </manifest>

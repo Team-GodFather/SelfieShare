@@ -8,6 +8,7 @@ import com.godfather.selfieshare.controllers.CurrentLocationListener;
 import com.godfather.selfieshare.data.QueryExecutor;
 import com.godfather.selfieshare.utils.ActivityUtils;
 import com.telerik.everlive.sdk.core.model.system.GeoPoint;
+import com.telerik.everlive.sdk.core.result.RequestResult;
 
 public abstract class BaseActivity<TActivity> extends FragmentActivity  {
 
@@ -49,11 +50,6 @@ public abstract class BaseActivity<TActivity> extends FragmentActivity  {
     @Override
     protected void onResume() {
         super.onResume();
-
-        // Get user position
-        GeoPoint currentLocation = BaseActivity.currentLocationListener.getLocation();
-        QueryExecutor queryExecutor = QueryExecutor.getInstance();
-        queryExecutor.updateCurrentUserLocation(currentLocation);
 
         this.resume();
     }
