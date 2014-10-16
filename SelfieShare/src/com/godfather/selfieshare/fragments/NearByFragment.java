@@ -38,30 +38,25 @@ public class NearByFragment extends Fragment implements AdapterView.OnItemClickL
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-
-//        Context context = getActivity();
-
-//        this.message = new Message(context);
-//        this.queryExecutor = QueryExecutor.getInstance();
-//        this.connectionProgressDialog = new ProgressDialog(context);
-//        this.connectionProgressDialog.setMessage("Logging out...");
-//
-//        ListView listView = (ListView) getView().findViewById(R.id.li_listView);
-//        this.users = new ArrayList<SelfieUser>();
-//        this.usersAdapter = new UserAdapter(context, R.layout.listview_item_row, users);
-//
-//        listView.setAdapter(usersAdapter);
-//
-//        this.loadUsers(listView, this);
-//
-//        listView.setOnItemClickListener(this);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_near_by, container, false);
+
+        Context context = getActivity();
+
+        this.message = new Message(context);
+        this.queryExecutor = QueryExecutor.getInstance();
+        this.connectionProgressDialog = new ProgressDialog(context);
+        this.connectionProgressDialog.setMessage("Logging out...");
+
+        ListView listView = (ListView) rootView.findViewById(R.id.li_listView);
+        this.users = new ArrayList<SelfieUser>();
+        this.usersAdapter = new UserAdapter(context, R.layout.listview_item_row, users);
+
+        listView.setAdapter(usersAdapter);
+
+        this.loadUsers(listView, this);
+
+        listView.setOnItemClickListener(this);
 
         return rootView;
     }
