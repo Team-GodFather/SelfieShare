@@ -1,25 +1,29 @@
 package com.godfather.selfieshare.controllers;
 
+import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 
+import android.widget.Toast;
 import com.godfather.selfieshare.data.QueryExecutor;
-import com.godfather.selfieshare.models.SelfieUser;
 import com.telerik.everlive.sdk.core.model.system.GeoPoint;
-import com.telerik.everlive.sdk.core.result.RequestResult;
-import com.telerik.everlive.sdk.core.result.RequestResultCallbackAction;
 
 public class CurrentLocationListener implements LocationListener {
     private static final long LOCATION_REFRESH_TIME = 60000;
-    private static final float LOCATION_REFRESH_DISTANCE = 0;
+    private static final float LOCATION_REFRESH_DISTANCE = 10;
 
+    public static Context appContext;
+    public static Boolean isRunning;
+    private static LocationManager locationManager;
     private static CurrentLocationListener currentLocationListener;
+    private static String currentProvider;
 
     private GeoPoint location = null;
 
     private CurrentLocationListener() {
+        isRunning = false;
     }
 
 
@@ -31,9 +35,26 @@ public class CurrentLocationListener implements LocationListener {
         return currentLocationListener;
     }
 
-    public void setLocationManager(LocationManager locationManager) {
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, LOCATION_REFRESH_TIME, LOCATION_REFRESH_DISTANCE, currentLocationListener);
-        currentLocationListener.setLocation(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
+    public void setLocationManager(LocationManager locationMan) {
+        locationManager = locationMan;
+        this.CheckProvider();
+    }
+
+    private void CheckProvider() {
+        currentProvider = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER) ? LocationManager.NETWORK_PROVIDER : null;
+        if (currentProvider == null && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            currentProvider = LocationManager.GPS_PROVIDER;
+        }
+
+        if (currentProvider != null) {
+            locationManager.requestLocationUpdates(currentProvider, LOCATION_REFRESH_TIME, LOCATION_REFRESH_DISTANCE, currentLocationListener);
+            currentLocationListener.setLocation(locationManager.getLastKnownLocation(currentProvider));
+
+            isRunning = true;
+        } else {
+            String message = "Your gps/network is not turned off.\nYour geolocation will not be sent to server.";
+            Toast.makeText(appContext, message, Toast.LENGTH_LONG).show();
+        }
     }
 
     public GeoPoint getLocation() {
@@ -64,11 +85,16 @@ public class CurrentLocationListener implements LocationListener {
 
     @Override
     public void onProviderEnabled(String provider) {
+        if (currentProvider == null) {
+            this.CheckProvider();
+        }
     }
 
     @Override
     public void onProviderDisabled(String provider) {
-        this.location = null;
-        currentLocationListener = null;
+        if (currentProvider.equals(provider)) {
+            isRunning = false;
+            currentProvider = null;
+        }
     }
 }

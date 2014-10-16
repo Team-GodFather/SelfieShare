@@ -1,7 +1,6 @@
 package com.godfather.selfieshare.data;
 
 import java.util.ArrayList;
-import java.util.IdentityHashMap;
 import java.util.UUID;
 
 import com.godfather.selfieshare.controllers.CurrentLocationListener;
@@ -23,7 +22,6 @@ public class QueryExecutor {
     private static EverliveApp app;
 
     private static QueryExecutor queryExecutor;
-    private static User authentication;
     private static SelfieUser currentUser;
 
     private static RequestResultCallbackAction onLoginCallback;
@@ -33,7 +31,7 @@ public class QueryExecutor {
         public void invoke(RequestResult<User> requestResult) {
             final boolean hasErrors = !requestResult.getSuccess();
             if (!hasErrors) {
-                authentication = requestResult.getValue();
+                User authentication = requestResult.getValue();
                 app.workWith().data(SelfieUser.class)
                         .getById(authentication.getId())
                         .executeAsync(selfieUserCallbackAction);
@@ -41,6 +39,7 @@ public class QueryExecutor {
         }
     };
 
+    @SuppressWarnings("unchecked")
     private static RequestResultCallbackAction<SelfieUser> selfieUserCallbackAction = new RequestResultCallbackAction<SelfieUser>() {
         @Override
         public void invoke(RequestResult<SelfieUser> requestResult) {
@@ -70,16 +69,12 @@ public class QueryExecutor {
         return queryExecutor;
     }
 
-    public SelfieUser getCurrentUser() {
-        return this.getCurrentUser();
-    }
-
     public void setUser(RequestResultCallbackAction<User> callbackAction) {
         app.workWith().users().getMe().executeAsync(callbackAction);
     }
 
     public void updateCurrentUserLocation(final GeoPoint location) {
-        if (this.currentUser != null) {
+        if (currentUser != null) {
             currentUser.setLocation(location);
             this.updateUser(currentUser, currentUser.getId());
         }
@@ -95,7 +90,7 @@ public class QueryExecutor {
         UserSecretInfo userSecretInfo = new UserSecretInfo();
         userSecretInfo.setPassword(password);
 
-        this.app.workWith().users(SelfieUser.class)
+        app.workWith().users(SelfieUser.class)
                 .create(user, userSecretInfo).executeAsync(callback);
     }
 
@@ -103,9 +98,8 @@ public class QueryExecutor {
     public void loginUser(String username, String password, RequestResultCallbackAction callback) {
         onLoginCallback = callback;
 
-        this.app.workWith().authentication().login(username, password)
+        app.workWith().authentication().login(username, password)
                 .executeAsync(new RequestResultCallbackAction<Object>() {
-                    @SuppressWarnings("unchecked")
                     @Override
                     public void invoke(RequestResult<Object> requestResult) {
                         final boolean hasErrors = !requestResult.getSuccess();
@@ -117,14 +111,14 @@ public class QueryExecutor {
     }
 
     public void logoutUser() {
-        this.app.workWith().authentication().logout().executeAsync(null);
+        app.workWith().authentication().logout().executeAsync(null);
     }
 
     public void getNearByUsers(final RequestResultCallbackAction<ArrayList<SelfieUser>> callback) {
         final FieldsDefinition includedFieldsDefinition = new FieldsDefinition();
         includedFieldsDefinition.addIncludedFields("Id", "Username", "Age", "Location", "Sex");
 
-        this.app.workWith().users(SelfieUser.class).getAll()
+        app.workWith().users(SelfieUser.class).getAll()
                 .where(new ValueCondition("Id", currentUser.getId(), ValueConditionOperator.NotEqualTo))
                 .select(includedFieldsDefinition)
                 .executeAsync(new RequestResultCallbackAction<ArrayList<SelfieUser>>() {

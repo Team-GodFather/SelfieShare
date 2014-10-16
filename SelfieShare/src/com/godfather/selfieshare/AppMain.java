@@ -7,7 +7,9 @@ import android.content.ServiceConnection;
 import android.location.LocationManager;
 
 import android.os.IBinder;
+import android.widget.Toast;
 import com.godfather.selfieshare.controllers.CurrentLocationListener;
+import com.godfather.selfieshare.controllers.Message;
 import com.godfather.selfieshare.utils.MusicService;
 
 public class AppMain extends Application {
@@ -19,6 +21,7 @@ public class AppMain extends Application {
         super.onCreate();
 
         // Setup Location Service
+        CurrentLocationListener.appContext = this;
         LocationManager locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
         CurrentLocationListener.getInstance().setLocationManager(locationManager);
 
