@@ -17,7 +17,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
-        android:gravity="center_vertical" />
+        android:gravity="center_vertical" android:contentDescription="@string/usernameHint"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -35,8 +35,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:gravity="center_vertical"
-                android:textColor="#ff609cff"
-                android:textSize="14dp" />
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/lvi_createDate"
@@ -44,8 +44,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="7dp"
-                android:gravity="center_vertical|right"
-                android:textSize="8dp" />
+                android:gravity="right|top"
+                android:textSize="14sp" />
         </RelativeLayout>
 
         <TextView
@@ -56,7 +56,7 @@
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
             android:gravity="left"
-            android:textSize="12dp" />
+            android:textSize="16sp" />
     </RelativeLayout>
 
 </RelativeLayout>
