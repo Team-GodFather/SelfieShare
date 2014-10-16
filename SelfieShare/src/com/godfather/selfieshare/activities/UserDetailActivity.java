@@ -132,7 +132,13 @@ public class UserDetailActivity extends BaseActivity<UserDetailActivity>
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
+//		 if (requestCode == 0 && resultCode == RESULT_OK) {
+//		        Bundle extras = data.getExtras();
+//		        Bitmap imageBitmap = (Bitmap) extras.get("data");
+//		        mImageView.setImageBitmap(imageBitmap);
+//		    }
+//		
+		
 		switch (requestCode) {
 		case ACTION_TAKE_PHOTO_B: {
 			if (resultCode == RESULT_OK) {
