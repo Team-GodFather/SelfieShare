@@ -6,11 +6,13 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     android:orientation="vertical"
+    android:weightSum="8"
     tools:context="com.godfather.selfieshare.activities.HomeActivity" >
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
         android:background="#ffffff"
         android:shrinkColumns="*"
         android:stretchColumns="*" >
@@ -64,19 +66,13 @@
                 android:textColor="#000"
                 android:textSize="18sp" />
         </TableRow>
-
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal" >
-
-            <fragment
-                android:id="@+id/footer_home"
-                android:name="com.godfather.selfieshare.fragments.MenuFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-        </TableRow>
     </TableLayout>
+
+    <fragment
+        android:id="@+id/footer_home"
+        android:name="com.godfather.selfieshare.fragments.MenuFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
 </LinearLayout>
