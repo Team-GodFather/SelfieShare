@@ -1,5 +1,6 @@
 package com.godfather.selfieshare;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -7,14 +8,16 @@ import android.content.ServiceConnection;
 import android.location.LocationManager;
 
 import android.os.IBinder;
-import android.widget.Toast;
 import com.godfather.selfieshare.controllers.CurrentLocationListener;
-import com.godfather.selfieshare.controllers.Message;
+import com.godfather.selfieshare.controllers.NetworkManager;
 import com.godfather.selfieshare.utils.MusicService;
 
 public class AppMain extends Application {
-    private MusicService mService;
+    private MusicService mMusicService;
+    private NetworkManager mNetworkManager;
+
     private boolean mBound = false;
+    private Activity mCurrentActivity = null;
 
     @Override
     public void onCreate() {
@@ -22,8 +25,12 @@ public class AppMain extends Application {
 
         // Setup Location Service
         CurrentLocationListener.appContext = this;
-        LocationManager locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
+        LocationManager locationManager = (LocationManager)this.getSystemService(LOCATION_SERVICE);
         CurrentLocationListener.getInstance().setLocationManager(locationManager);
+
+        // Network Service
+        this.mNetworkManager = new NetworkManager();
+        this.mNetworkManager.initialize(this);
 
         // Music Background Service
         Intent intent = new Intent(this, MusicService.class);
@@ -33,6 +40,14 @@ public class AppMain extends Application {
     @Override
     public void onTerminate() {
         this.unbindService(mConnection);
+        this.mNetworkManager.destroy();
+    }
+
+    public Activity getCurrentActivity(){
+        return this.mCurrentActivity;
+    }
+    public void setCurrentActivity(Activity mCurrentActivity){
+        this.mCurrentActivity = mCurrentActivity;
     }
 
     private ServiceConnection mConnection = new ServiceConnection() {
@@ -41,10 +56,10 @@ public class AppMain extends Application {
             // We've bound to LocalService, cast the IBinder and get
             // LocalService instance
             MusicService.LocalBinder binder = (MusicService.LocalBinder) service;
-            mService = binder.getService();
+            mMusicService = binder.getService();
             mBound = true;
-            mService.loadSong(R.raw.selfie);
-            mService.playSong();
+            mMusicService.loadSong(R.raw.selfie);
+            mMusicService.playSong();
         }
 
         @Override

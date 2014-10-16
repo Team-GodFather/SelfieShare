@@ -1,16 +1,16 @@
 package com.godfather.selfieshare.activities;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
+import com.godfather.selfieshare.AppMain;
 import com.godfather.selfieshare.R;
 import com.godfather.selfieshare.controllers.CurrentLocationListener;
-import com.godfather.selfieshare.data.QueryExecutor;
 import com.godfather.selfieshare.utils.ActivityUtils;
-import com.telerik.everlive.sdk.core.model.system.GeoPoint;
-import com.telerik.everlive.sdk.core.result.RequestResult;
 
 public abstract class BaseActivity<TActivity> extends FragmentActivity  {
+    protected AppMain appMain;
 
     protected static final CurrentLocationListener currentLocationListener = CurrentLocationListener.getInstance();
 
@@ -26,6 +26,8 @@ public abstract class BaseActivity<TActivity> extends FragmentActivity  {
         super.onCreate(savedInstanceState);
         this.setContentView(this.getActivityLayout());
 
+        appMain = (AppMain)this.getApplicationContext();
+
         String appName = this.getString(R.string.app_name);
         String activityTitle = ActivityUtils.getActivityTitle(appName, this.getActivityTitle());
         this.setTitle(activityTitle);
@@ -37,6 +39,7 @@ public abstract class BaseActivity<TActivity> extends FragmentActivity  {
     protected void onDestroy() {
         super.onDestroy();
 
+        clearReferences();
         this.destroy();
     }
 
@@ -44,6 +47,7 @@ public abstract class BaseActivity<TActivity> extends FragmentActivity  {
     protected void onPause() {
         super.onPause();
 
+        clearReferences();
         this.pause();
     }
 
@@ -51,6 +55,7 @@ public abstract class BaseActivity<TActivity> extends FragmentActivity  {
     protected void onResume() {
         super.onResume();
 
+        appMain.setCurrentActivity(this);
         this.resume();
     }
 
@@ -70,5 +75,11 @@ public abstract class BaseActivity<TActivity> extends FragmentActivity  {
     }
 
     protected void destroy() {
+    }
+
+    private void clearReferences(){
+        Activity currActivity = appMain.getCurrentActivity();
+        if (currActivity != null && currActivity.equals(this))
+            appMain.setCurrentActivity(null);
     }
 }
