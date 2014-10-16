@@ -3,55 +3,60 @@
     android:id="@+id/menuLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_alignParentBottom="true"
     android:gravity="bottom"
-    android:layout_alignParentBottom="true" >
+    android:orientation="vertical" >
 
     <LinearLayout
-         android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5" >
 
         <Button
             android:id="@+id/menuHome"
             style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/home"
-            android:textSize="10dp" />
+            android:textSize="8dp" />
 
         <Button
             android:id="@+id/menuNearBy"
             style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/nearBy"
-            android:textSize="10dp" />
+            android:textSize="8dp" />
 
         <Button
             android:id="@+id/menuRequested"
             style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/requested"
-            android:textSize="10dp" />
+            android:textSize="8dp" />
 
         <Button
             android:id="@+id/menuReceived"
             style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/received"
-            android:textSize="10dp" />
+            android:textSize="8dp" />
 
         <Button
             android:id="@+id/menuSettings"
             style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/settings"
-            android:textSize="10dp" />
+            android:textSize="8dp" />
     </LinearLayout>
 
 </LinearLayout>
