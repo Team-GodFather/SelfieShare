@@ -1,9 +1,9 @@
 package com.godfather.selfieshare.activities;
 
 import android.app.ProgressDialog;
-import android.content.*;
+import android.content.Intent;
 import android.view.View;
-import android.widget.Button;
+import android.view.View.OnClickListener;
 import android.widget.EditText;
 
 import com.godfather.selfieshare.R;
@@ -13,7 +13,7 @@ import com.godfather.selfieshare.data.QueryExecutor;
 import com.telerik.everlive.sdk.core.result.RequestResult;
 import com.telerik.everlive.sdk.core.result.RequestResultCallbackAction;
 
-public class MainActivity extends BaseActivity<MainActivity> implements Button.OnClickListener {
+public class MainActivity extends BaseActivity<MainActivity> implements OnClickListener {
     private static final String LOGIN_SUCCESSFUL = "Successful login!";
     private static final String LOGIN_FAILED = "Incorrect username or password!";
     private static final String LOGIN_VALIDATION = "Please enter correct data in the fields!";

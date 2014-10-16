@@ -11,68 +11,16 @@
     <ListView
         android:id="@+id/li_listView"
         android:layout_width="match_parent"
-        android:layout_height="306dp"
+        android:layout_height="402dp"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="0.77"
         android:paddingLeft="12dp"
         android:paddingRight="12dp" />
 
-    <LinearLayout
+    <fragment
+        android:id="@+id/footer_near_by"
+        android:name="com.godfather.selfieshare.fragments.MenuFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal" >
-
-            <Button
-                android:id="@+id/menuHome"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/home" />
-
-            <Button
-                android:id="@+id/menuNearBy"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/nearBy" />
-
-            <Button
-                android:id="@+id/menuRequested"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/requested" />
-
-            <Button
-                android:id="@+id/menuRecieved"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/received" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp"
-            android:gravity="bottom|center|end"
-            android:orientation="horizontal" >
-
-            <Button
-                android:id="@+id/menuSettings"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/settings" />
-        </LinearLayout>
-    </LinearLayout>
+        android:layout_height="fill_parent"
+        android:layout_weight="1" />
 
 </LinearLayout>

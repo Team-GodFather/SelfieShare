@@ -28,20 +28,16 @@
                 android:padding="18dip"
                 android:text="Requested:"
                 android:textColor="#000"
-                android:textSize="18dp" />
+                android:textSize="18sp" />
 
-            <EditText
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_span="3"
                 android:background="#b0b0b0"
-                android:inputType="text"
                 android:padding="18dip"
                 android:textColor="#000"
-                android:textSize="18dp" >
-
-                <requestFocus />
-            </EditText>
+                android:textSize="18sp" />
         </TableRow>
 
         <TableRow
@@ -57,71 +53,30 @@
                 android:padding="18dip"
                 android:text="Received:"
                 android:textColor="#000"
-                android:textSize="18dp" />
+                android:textSize="18sp" />
 
-            <EditText
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_span="3"
                 android:background="#b0b0b0"
-                android:inputType="text"
                 android:padding="18dip"
                 android:textColor="#000"
-                android:textSize="18dp" />
+                android:textSize="18sp" />
         </TableRow>
 
-        
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/menuHome"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/home" />
-
-        <Button
-            android:id="@+id/menuNearBy"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/nearBy" />
-
-        <Button
-            android:id="@+id/menuRequested"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
+        <TableRow
+            android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:text="@string/requested" />
+            android:gravity="center_horizontal" >
 
-        <Button
-            android:id="@+id/menuRecieved"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/received" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="7dp"
-        android:gravity="bottom|center|end"
-        android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/menuSettings"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/settings" />
-    </LinearLayout>
+            <fragment
+                android:id="@+id/footer_home"
+                android:name="com.godfather.selfieshare.fragments.MenuFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </TableRow>
     </TableLayout>
 
 </LinearLayout>

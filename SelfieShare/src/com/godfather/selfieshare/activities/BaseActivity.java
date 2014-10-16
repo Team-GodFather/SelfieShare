@@ -1,21 +1,20 @@
 package com.godfather.selfieshare.activities;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
-import com.godfather.selfieshare.data.QueryExecutor;
-import com.godfather.selfieshare.models.SelfieUser;
-import com.telerik.everlive.sdk.core.model.system.GeoPoint;
 import com.godfather.selfieshare.R;
 import com.godfather.selfieshare.controllers.CurrentLocationListener;
+import com.godfather.selfieshare.data.QueryExecutor;
 import com.godfather.selfieshare.utils.ActivityUtils;
+import com.telerik.everlive.sdk.core.model.system.GeoPoint;
 
-public abstract class BaseActivity<TActivity> extends Activity {
+public abstract class BaseActivity<TActivity> extends FragmentActivity  {
 
     protected static final CurrentLocationListener currentLocationListener = CurrentLocationListener.getInstance();
 
     protected final TActivity activity;
-
+    
     @SuppressWarnings("unchecked")
     protected BaseActivity() {
         this.activity = (TActivity) this;

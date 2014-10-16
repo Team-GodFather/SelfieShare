@@ -29,27 +29,33 @@ public final class R {
         public static final int male=0x7f020004;
     }
     public static final class id {
-        public static final int action_settings=0x7f09001c;
-        public static final int container=0x7f09000e;
-        public static final int home=0x7f090006;
-        public static final int li_listView=0x7f09000d;
-        public static final int loginBtn=0x7f09000a;
-        public static final int loginPassword=0x7f090009;
-        public static final int loginUsername=0x7f090008;
-        public static final int lvi_createDate=0x7f09001a;
-        public static final int lvi_nameDateContainer=0x7f090018;
-        public static final int lvi_postText=0x7f09001b;
-        public static final int lvi_userImage=0x7f090017;
-        public static final int lvi_userName=0x7f090019;
+        public static final int action_settings=0x7f090022;
+        public static final int container=0x7f09000b;
+        public static final int footer_fragment=0x7f09000e;
+        public static final int footer_home=0x7f090001;
+        public static final int footer_near_by=0x7f09000a;
+        public static final int footer_received=0x7f09000d;
+        public static final int footer_requested=0x7f09000c;
+        public static final int home=0x7f090002;
+        public static final int li_listView=0x7f090009;
+        public static final int loginBtn=0x7f090006;
+        public static final int loginPassword=0x7f090005;
+        public static final int loginUsername=0x7f090004;
+        public static final int lvi_createDate=0x7f090020;
+        public static final int lvi_nameDateContainer=0x7f09001e;
+        public static final int lvi_postText=0x7f090021;
+        public static final int lvi_userImage=0x7f09001d;
+        public static final int lvi_userName=0x7f09001f;
         public static final int menu=0x7f090000;
-        public static final int menuHome=0x7f090001;
-        public static final int menuNearBy=0x7f090002;
-        public static final int menuRecieved=0x7f090004;
-        public static final int menuRequested=0x7f090003;
-        public static final int menuSettings=0x7f090005;
-        public static final int nearBy=0x7f09000c;
+        public static final int menuHome=0x7f090018;
+        public static final int menuLayout=0x7f090017;
+        public static final int menuNearBy=0x7f090019;
+        public static final int menuReceived=0x7f09001b;
+        public static final int menuRequested=0x7f09001a;
+        public static final int menuSettings=0x7f09001c;
+        public static final int nearBy=0x7f090008;
         public static final int signUpAge=0x7f090013;
-        public static final int signUpBtn=0x7f09000b;
+        public static final int signUpBtn=0x7f090007;
         public static final int signUpConfirmPassword=0x7f090012;
         public static final int signUpHeadLine=0x7f09000f;
         public static final int signUpPassword=0x7f090011;
@@ -57,7 +63,7 @@ public final class R {
         public static final int signUpSexFemale=0x7f090015;
         public static final int signUpSexMale=0x7f090014;
         public static final int signUpUsername=0x7f090010;
-        public static final int welcome=0x7f090007;
+        public static final int welcome=0x7f090003;
     }
     public static final class layout {
         public static final int activity_home=0x7f030000;
@@ -69,8 +75,7 @@ public final class R {
         public static final int activity_settings=0x7f030006;
         public static final int activity_sign_up=0x7f030007;
         public static final int fragment_menu=0x7f030008;
-        public static final int fragment_request_detail=0x7f030009;
-        public static final int listview_item_row=0x7f03000a;
+        public static final int listview_item_row=0x7f030009;
     }
     public static final class menu {
         public static final int home=0x7f080000;
