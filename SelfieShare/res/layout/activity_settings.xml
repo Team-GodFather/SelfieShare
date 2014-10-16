@@ -3,15 +3,23 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_weight="8"
     android:orientation="vertical"
     tools:context="com.godfather.selfieshare.activities.SettingsActivity"
     tools:ignore="MergeRootFrame" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="7"
+        android:orientation="vertical" >
+    </LinearLayout>
 
     <fragment
         android:id="@+id/footer_fragment"
         android:name="com.godfather.selfieshare.fragments.MenuFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1" />
 
 </LinearLayout>
