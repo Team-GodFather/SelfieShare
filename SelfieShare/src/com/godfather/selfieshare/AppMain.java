@@ -8,6 +8,7 @@ import android.content.ServiceConnection;
 import android.location.LocationManager;
 
 import android.os.IBinder;
+import com.godfather.selfieshare.controllers.CameraLauncher;
 import com.godfather.selfieshare.controllers.CurrentLocationListener;
 import com.godfather.selfieshare.controllers.NetworkManager;
 import com.godfather.selfieshare.utils.MusicService;
@@ -15,6 +16,7 @@ import com.godfather.selfieshare.utils.MusicService;
 public class AppMain extends Application {
     private MusicService mMusicService;
     private NetworkManager mNetworkManager;
+    public CameraLauncher cameraLauncher;
 
     private boolean mBound = false;
     private Activity mCurrentActivity = null;
@@ -35,6 +37,9 @@ public class AppMain extends Application {
         // Music Background Service
         Intent intent = new Intent(this, MusicService.class);
         this.bindService(intent, this.mConnection, this.BIND_AUTO_CREATE);
+
+        // Camera Service
+        this.cameraLauncher = new CameraLauncher(this);
     }
 
     @Override

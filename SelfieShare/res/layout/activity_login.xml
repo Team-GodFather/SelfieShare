@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:orientation="vertical"
-    tools:context="com.godfather.selfieshare.Login" >
+    android:orientation="vertical" tools:context=".activities.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

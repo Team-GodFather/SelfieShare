@@ -4,10 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
+import android.view.Window;
 import com.godfather.selfieshare.AppMain;
-import com.godfather.selfieshare.R;
 import com.godfather.selfieshare.controllers.CurrentLocationListener;
-import com.godfather.selfieshare.utils.ActivityUtils;
 
 public abstract class BaseActivity<TActivity> extends FragmentActivity  {
     protected AppMain appMain;
@@ -24,13 +23,10 @@ public abstract class BaseActivity<TActivity> extends FragmentActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.setContentView(this.getActivityLayout());
 
         appMain = (AppMain)this.getApplicationContext();
-
-        String appName = this.getString(R.string.app_name);
-        String activityTitle = ActivityUtils.getActivityTitle(appName, this.getActivityTitle());
-        this.setTitle(activityTitle);
 
         this.create();
     }
@@ -58,9 +54,6 @@ public abstract class BaseActivity<TActivity> extends FragmentActivity  {
         appMain.setCurrentActivity(this);
         this.resume();
     }
-
-    // Abstract
-    protected abstract String getActivityTitle();
 
     protected abstract int getActivityLayout();
 

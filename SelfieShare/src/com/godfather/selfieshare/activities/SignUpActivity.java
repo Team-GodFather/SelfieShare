@@ -34,11 +34,6 @@ public class SignUpActivity extends BaseActivity<SignUpActivity> implements Butt
     private EditText signUpPhoneNumber;
 
     @Override
-    protected String getActivityTitle() {
-        return this.getString(R.string.title_activity_sign_up);
-    }
-
-    @Override
     protected int getActivityLayout() {
         return R.layout.activity_sign_up;
     }
@@ -99,23 +94,23 @@ public class SignUpActivity extends BaseActivity<SignUpActivity> implements Butt
         StringBuilder stringBuilder = new StringBuilder();
 
         if (!SignUpValidator.validateUsername(username)) {
-            appendLine(stringBuilder, this.SHORT_USERNAME);
+            appendLine(stringBuilder, SHORT_USERNAME);
         }
 
         if (!SignUpValidator.validatePassword(password)) {
-            appendLine(stringBuilder, this.SHORT_PASSWORD);
+            appendLine(stringBuilder, SHORT_PASSWORD);
         }
 
         if (!SignUpValidator.validatePasswords(password, confirmPassword)) {
-            appendLine(stringBuilder, this.WRONG_PASSWORDS_INPUT);
+            appendLine(stringBuilder, WRONG_PASSWORDS_INPUT);
         }
 
         if (!SignUpValidator.validateAge(age)) {
-            appendLine(stringBuilder, this.AGE_NOT_IN_RANGE);
+            appendLine(stringBuilder, AGE_NOT_IN_RANGE);
         }
 
         if (!SignUpValidator.validatePhoneNumber(phoneNumber)) {
-            appendLine(stringBuilder, this.PHONE_NUMBER_NOT_IN_RANGE);
+            appendLine(stringBuilder, PHONE_NUMBER_NOT_IN_RANGE);
         }
 
         if (stringBuilder.length() > 0) {

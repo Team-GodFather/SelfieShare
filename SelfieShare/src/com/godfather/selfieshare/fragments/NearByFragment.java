@@ -77,8 +77,8 @@ public class NearByFragment extends Fragment implements AdapterView.OnItemClickL
         SelfieUser selectedUser = (SelfieUser) parent.getAdapter().getItem(position);
         if (selectedUser != null) {
         	Intent intent = new Intent(this.getActivity(), UserDetailActivity.class);
-        	intent.putExtra("id", selectedUser.getCreatedBy());
-        	startActivity(intent);
+        	intent.putExtra("userId", selectedUser.getId().toString());
+        	startActivityForResult(intent, 1);
         }
     }
 

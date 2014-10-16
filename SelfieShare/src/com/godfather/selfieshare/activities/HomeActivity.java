@@ -4,17 +4,14 @@ import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.util.ArrayMap;
 import android.support.v4.view.ViewPager;
+import android.view.Window;
 import com.godfather.selfieshare.R;
 import com.godfather.selfieshare.data.QueryExecutor;
 import com.godfather.selfieshare.fragments.TabsPagerAdapter;
-import com.godfather.selfieshare.utils.ActivityUtils;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class HomeActivity extends FragmentActivity implements ActionBar.TabListener {
@@ -30,12 +27,11 @@ public class HomeActivity extends FragmentActivity implements ActionBar.TabListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        String appName = this.getString(R.string.app_name);
-        this.setTitle(appName);
-
         // Initialization
         viewPager = (ViewPager) findViewById(R.id.pager);
-        actionBar = getActionBar();
+        actionBar = this.getActionBar();
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayShowHomeEnabled(false);
         mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
 
         viewPager.setAdapter(mAdapter);

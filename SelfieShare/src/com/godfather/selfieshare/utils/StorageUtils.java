@@ -11,6 +11,5 @@ public final class StorageUtils {
 
 	public File getAlbumStorageDir() {
 		return new File(Environment.getExternalStorageDirectory() + CAMERA_DIR);
-
 	}
 }

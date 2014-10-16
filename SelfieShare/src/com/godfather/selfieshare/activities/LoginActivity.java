@@ -13,7 +13,7 @@ import com.godfather.selfieshare.data.QueryExecutor;
 import com.telerik.everlive.sdk.core.result.RequestResult;
 import com.telerik.everlive.sdk.core.result.RequestResultCallbackAction;
 
-public class MainActivity extends BaseActivity<MainActivity> implements OnClickListener {
+public class LoginActivity extends BaseActivity<LoginActivity> implements OnClickListener {
     private static final String LOGIN_SUCCESSFUL = "Successful login!";
     private static final String LOGIN_FAILED = "Incorrect username or password!";
     private static final String LOGIN_VALIDATION = "Please enter correct data in the fields!";
@@ -26,13 +26,8 @@ public class MainActivity extends BaseActivity<MainActivity> implements OnClickL
     private EditText loginPassword;
 
     @Override
-    protected String getActivityTitle() {
-        return this.getString(R.string.title_activity_main);
-    }
-
-    @Override
     protected int getActivityLayout() {
-        return R.layout.activity_main;
+        return R.layout.activity_login;
     }
 
     @Override
@@ -70,7 +65,7 @@ public class MainActivity extends BaseActivity<MainActivity> implements OnClickL
             this.connectionProgressDialog.show();
             this.queryExecutor.loginUser(username, password, loginThread());
         } else {
-            this.message.print(this.LOGIN_VALIDATION);
+            this.message.print(LOGIN_VALIDATION);
         }
     }
 
@@ -80,18 +75,18 @@ public class MainActivity extends BaseActivity<MainActivity> implements OnClickL
             public void invoke(RequestResult<Object> requestResult) {
                 final boolean hasErrors = !requestResult.getSuccess();
 
-                MainActivity.this.runOnUiThread(new Runnable() {
+                LoginActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         connectionProgressDialog.dismiss();
 
                         if (!hasErrors) {
-                            activity.message.print(activity.LOGIN_SUCCESSFUL);
+                            activity.message.print(LOGIN_SUCCESSFUL);
 
-                            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                             activity.startActivity(intent);
                         } else {
-                            activity.message.print(activity.LOGIN_FAILED);
+                            activity.message.print(LOGIN_FAILED);
                         }
                     }
                 });
@@ -100,7 +95,7 @@ public class MainActivity extends BaseActivity<MainActivity> implements OnClickL
     }
 
     public void register(View view) {
-        Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
+        Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
         startActivityForResult(intent, 1);
         //startActivity(intent);
     }
