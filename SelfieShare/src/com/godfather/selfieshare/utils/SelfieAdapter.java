@@ -3,7 +3,6 @@ package com.godfather.selfieshare.utils;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.UUID;
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,35 +14,33 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.godfather.selfieshare.R;
-import com.godfather.selfieshare.models.SelfieUser;
+import com.godfather.selfieshare.models.Selfie;
 import com.telerik.everlive.sdk.core.result.RequestResult;
 import com.telerik.everlive.sdk.core.result.RequestResultCallbackAction;
 
 
-public class UserAdapter extends ArrayAdapter<SelfieUser> {
+public class SelfieAdapter extends ArrayAdapter<Selfie> {
     private Context context;
     private int layoutResourceId;
-    private List<SelfieUser> users;
+    private List<Selfie> selfies;
 
-    public UserAdapter(Context context, int layoutResourceId, List<SelfieUser> users) {
-        super(context, layoutResourceId, users);
+    public SelfieAdapter(Context context, int layoutResourceId, List<Selfie> selfies) {
+        super(context, layoutResourceId, selfies);
         this.context = context;
         this.layoutResourceId = layoutResourceId;
-        this.users = users;
+        this.selfies = selfies;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = convertView;
-        UserHolder holder = null;
-
-//        Log.d("AndroidSandbox", "getView for position -> " + position);
+        SelfieHolder holder = null;
 
         if (row == null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
             row = inflater.inflate(layoutResourceId, parent, false);
 
-            holder = new UserHolder();
+            holder = new SelfieHolder();
             holder.userImage = (ImageView) row.findViewById(R.id.lvi_userImage);
             holder.postText = (TextView) row.findViewById(R.id.lvi_postText);
             holder.userName = (TextView) row.findViewById(R.id.lvi_userName);
@@ -51,50 +48,49 @@ public class UserAdapter extends ArrayAdapter<SelfieUser> {
 
             row.setTag(holder);
         } else {
-            holder = (UserHolder) row.getTag();
+            holder = (SelfieHolder) row.getTag();
         }
 
-        SelfieUser user = this.users.get(position);
-        if (user != null) {
-            int imageId = user.getSex().trim().equals("Male") ? R.drawable.male : R.drawable.female; 
-        	
-        	holder.postText.setText(user.getUsername());
+        Selfie selfie = this.selfies.get(position);
+        if (selfie != null) {
+        	// TODO: change list item
+        	holder.postText.setText(selfie.getTo().toString());
             
-            holder.userImage.setBackgroundResource(imageId);
-            DateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
-            holder.postCreateDate.setText(dateFormat.format(user.getCreatedAt()).toUpperCase());
+        //    holder.userImage.setBackgroundResource(imageId);
+            DateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy hh:mm:ss");
+            holder.postCreateDate.setText(dateFormat.format(selfie.getCreatedAt()).toUpperCase());
         }
 
         return row;
     }
 
-    static class UserHolder {
+    static class SelfieHolder {
         private ImageView userImage;
         private TextView postText;
         private TextView userName;
         private TextView postCreateDate;
     }
 
-    class MyRequestResultCallbackAction extends RequestResultCallbackAction {
-        private UserHolder postHolder;
+    class CurrentRequestResultCallbackAction extends RequestResultCallbackAction {
+        private SelfieHolder selfieHolder;
         private View parentView;
 
-        MyRequestResultCallbackAction(UserHolder postHolder, View parentView) {
-            this.postHolder = postHolder;
+        CurrentRequestResultCallbackAction(SelfieHolder selfieHolder, View parentView) {
+            this.selfieHolder = selfieHolder;
             this.parentView = parentView;
         }
 
         @Override
         public void invoke(RequestResult requestResult) {
             if (requestResult.getSuccess()) {
-                final SelfieUser user = (SelfieUser) requestResult.getValue();
+                final Selfie selfie = (Selfie) requestResult.getValue();
 
-                final String userName = user.getDisplayName();
+                final String userName = selfie.getTo().toString();
 //                Log.d("AndroidSandbox", "get display nane for user -> " + user.getDisplayName());
                 this.parentView.post(new Runnable() {
                     @Override
                     public void run() {
-                        postHolder.userName.setText(userName);
+                    	selfieHolder.userName.setText(userName);
                     }
                 });
               

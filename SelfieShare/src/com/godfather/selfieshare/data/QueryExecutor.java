@@ -156,6 +156,52 @@ public class QueryExecutor {
                 });
     }
 
+    public void getRequestedSelfies(final RequestResultCallbackAction<ArrayList<Selfie>> callback) {
+        final FieldsDefinition includedFieldsDefinition = new FieldsDefinition();
+        includedFieldsDefinition.addIncludedFields("Id", "Picture", "To", "CreatedBy", "CreatedAt");
+
+        app.workWith().data(Selfie.class).getAll()
+                .where(new ValueCondition("CreatedBy", currentUser.getId(), ValueConditionOperator.EqualTo))
+                .select(includedFieldsDefinition)
+                .executeAsync(new RequestResultCallbackAction<ArrayList<Selfie>>() {
+                    @Override
+                    public void invoke(RequestResult<ArrayList<Selfie>> requestResult) {
+                        final boolean hasErrors = !requestResult.getSuccess();
+
+                        if (!hasErrors) {
+                            ArrayList<Selfie> selfies = requestResult.getValue();
+
+                            callback.invoke(new RequestResult<ArrayList<Selfie>>(selfies, new DynamicData()));
+                        } else {
+                            // TODO: Handle error
+                        }
+                    }
+                });
+    }    
+    
+    public void getReceivedSelfies(final RequestResultCallbackAction<ArrayList<Selfie>> callback) {
+        final FieldsDefinition includedFieldsDefinition = new FieldsDefinition();
+        includedFieldsDefinition.addIncludedFields("Id", "Picture", "To", "CreatedBy", "CreatedAt");
+
+        app.workWith().data(Selfie.class).getAll()
+                .where(new ValueCondition("To", currentUser.getId(), ValueConditionOperator.EqualTo))
+                .select(includedFieldsDefinition)
+                .executeAsync(new RequestResultCallbackAction<ArrayList<Selfie>>() {
+                    @Override
+                    public void invoke(RequestResult<ArrayList<Selfie>> requestResult) {
+                        final boolean hasErrors = !requestResult.getSuccess();
+
+                        if (!hasErrors) {
+                            ArrayList<Selfie> selfies = requestResult.getValue();
+
+                            callback.invoke(new RequestResult<ArrayList<Selfie>>(selfies, new DynamicData()));
+                        } else {
+                            // TODO: Handle error
+                        }
+                    }
+                });
+    }    
+    
     /**
      * Passed to function:
      * lat1, lon1 = Latitude and Longitude of point 1 (in decimal degrees)
