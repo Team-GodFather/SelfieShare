@@ -2,6 +2,7 @@ package com.godfather.selfieshare.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.godfather.selfieshare.R;
+import com.godfather.selfieshare.activities.UserDetailActivity;
 import com.godfather.selfieshare.controllers.Message;
 import com.godfather.selfieshare.data.QueryExecutor;
 import com.godfather.selfieshare.models.SelfieUser;
@@ -20,6 +22,8 @@ import com.telerik.everlive.sdk.core.result.RequestResult;
 import com.telerik.everlive.sdk.core.result.RequestResultCallbackAction;
 
 import java.util.ArrayList;
+
+import org.w3c.dom.UserDataHandler;
 
 public class NearByFragment extends Fragment implements AdapterView.OnItemClickListener {
     private ArrayList<SelfieUser> users;
@@ -70,13 +74,11 @@ public class NearByFragment extends Fragment implements AdapterView.OnItemClickL
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        SelfieUser selectedPost = (SelfieUser) parent.getAdapter().getItem(position);
-        if (selectedPost != null) {
-            //TODO: send selfie
-//	                    BaseViewModel.getInstance().setSelectedPost(selectedPost);
-//	                    Intent i = new Intent(getBaseContext(), DetailViewActivity.class);
-//	                    i.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-//	                    startActivity(i);
+        SelfieUser selectedUser = (SelfieUser) parent.getAdapter().getItem(position);
+        if (selectedUser != null) {
+        	Intent intent = new Intent(this.getActivity(), UserDetailActivity.class);
+        	intent.putExtra("id", selectedUser.getCreatedBy());
+        	startActivity(intent);
         }
     }
 

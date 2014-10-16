@@ -1,16 +1,22 @@
 package com.godfather.selfieshare.data;
 
+import java.io.InputStream;
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.UUID;
 
 import com.godfather.selfieshare.controllers.CurrentLocationListener;
+import com.godfather.selfieshare.models.Selfie;
 import com.godfather.selfieshare.models.SelfieUser;
 import com.godfather.selfieshare.utils.GlobalCallbacks;
 import com.telerik.everlive.sdk.core.EverliveApp;
 import com.telerik.everlive.sdk.core.model.base.DynamicData;
+import com.telerik.everlive.sdk.core.model.base.ItemBase;
 import com.telerik.everlive.sdk.core.model.system.GeoPoint;
 import com.telerik.everlive.sdk.core.model.system.User;
 import com.telerik.everlive.sdk.core.query.definition.FieldsDefinition;
+import com.telerik.everlive.sdk.core.query.definition.FileField;
 import com.telerik.everlive.sdk.core.query.definition.UserSecretInfo;
 import com.telerik.everlive.sdk.core.query.definition.filtering.simple.ValueCondition;
 import com.telerik.everlive.sdk.core.query.definition.filtering.simple.ValueConditionOperator;
@@ -21,6 +27,7 @@ public class QueryExecutor {
     private static final String EVERLIVE_KEY = "vzK1tHn68Q4BHHux";
     private static EverliveApp app;
 
+    private SecureRandom random = new SecureRandom();
     private static QueryExecutor queryExecutor;
     private static SelfieUser currentUser;
 
@@ -184,5 +191,18 @@ public class QueryExecutor {
         return (rad / Math.PI * 180.0);
     }
 
+    public void uploadImage(InputStream inputStream, RequestResultCallbackAction callbackAction) {
+        String fileName = new BigInteger(130, random).toString(32) + ".jpg";
+        String contentType = "image/jpeg";
+
+        FileField fileField = new FileField(fileName, contentType, inputStream);
+        app.workWith().files().upload(fileField).executeAsync(callbackAction);
+    }
+    
+    public void addSelfie(ItemBase selfie, RequestResultCallbackAction callback) {
+
+           app.workWith().data(Selfie.class)
+                   .create(selfie).executeAsync(callback);    
+    }
 }
 

@@ -39,7 +39,6 @@
 
     <!-- Menu -->
     <string name="title_menu_fragment">Menu</string>
-    
     <string name="home">Home</string>
     <string name="nearBy">Near By</string>
     <string name="requested">Requested</string>
@@ -48,5 +47,10 @@
     <string name="title_activity_request_detail">Request Detail</string>
     <string name="hello_world">Hello world!</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+   
+    <!-- UserDetail -->
+    <string name="title_activity_user_detail">User Detail</string>
+     <string name="sendPicture">Send Picture</string>
+    
 
 </resources>

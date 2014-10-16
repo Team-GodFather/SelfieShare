@@ -1,15 +1,11 @@
 package com.godfather.selfieshare.models;
 
-import java.util.UUID;
-
+import com.telerik.everlive.sdk.core.model.base.ItemBase;
 import com.telerik.everlive.sdk.core.serialization.ServerProperty;
 import com.telerik.everlive.sdk.core.serialization.ServerType;
 
 @ServerType("Settings")
-public class Setting {
-    @ServerProperty("CreatedBy")
-    private UUID createdBy;
-    
+public class Setting extends ItemBase { 
     @ServerProperty("Female")
     private boolean female;
  
@@ -21,10 +17,6 @@ public class Setting {
 
     @ServerProperty("MinimumAge")
     private int minimumAge;
-
-	public UUID getCreatedBy() {
-		return createdBy;
-	}
 
 	public boolean isFemale() {
 		return female;
@@ -40,10 +32,6 @@ public class Setting {
 
 	public int getMinimumAge() {
 		return minimumAge;
-	}
-
-	public void setCreatedBy(UUID createdBy) {
-		this.createdBy = createdBy;
 	}
 
 	public void setFemale(boolean female) {
