@@ -86,6 +86,7 @@ public class QueryExecutor {
     public void loginUser(String username, String password, final RequestResultCallbackAction callback) {
         this.app.workWith().authentication().login(username, password)
                 .executeAsync(new RequestResultCallbackAction<Object>() {
+                    @SuppressWarnings("unchecked")
                     @Override
                     public void invoke(RequestResult<Object> requestResult) {
                         final boolean hasErrors = !requestResult.getSuccess();

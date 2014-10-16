@@ -5,7 +5,7 @@
 	<lib name="AndroidSDK.jar" scope="COMPILE">
 		<relative-module-cls project-related="jar://$PROJECT_DIR$/libs/AndroidSDK.jar!/"/>
 	</lib>
-	<lib name="D:\Projects\GitHub\Telerik\SelfieShare\trunk\SelfieShare\libs\android-support-v4.jar" scope="COMPILE">
+	<lib name="android-support-v4.jar" scope="COMPILE">
 		<relative-module-cls project-related="jar://$PROJECT_DIR$/libs/android-support-v4.jar!/"/>
 	</lib>
 </component>
