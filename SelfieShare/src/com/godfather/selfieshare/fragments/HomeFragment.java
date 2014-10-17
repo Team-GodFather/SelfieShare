@@ -19,32 +19,23 @@ public class HomeFragment extends Fragment {
 	private TextView received;
 	private QueryExecutor queryExecutor;
 
-    private ProgressDialog connectionProgressDialog;
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_home, container,
 				false);
-
-        this.connectionProgressDialog = new ProgressDialog(this.getActivity());
-        this.connectionProgressDialog.setMessage("Stats loading...");
         
 		this.queryExecutor = QueryExecutor.getInstance();
 		this.received = (TextView) rootView.findViewById(R.id.receivedSelfies);
-		this.requested = (TextView) rootView
-				.findViewById(R.id.requestedSelfies);
+		this.requested = (TextView) rootView.findViewById(R.id.requestedSelfies);
 
 		setRequestedCount();
 		setReceivedCount();
-		
-		this.connectionProgressDialog.show();
 		
 		return rootView;
 	}
 
 	public void setRequestedCount() {
-
 		final Activity current = this.getActivity();
 		this.queryExecutor
 				.countRequestedSelfies(new RequestResultCallbackAction() {
@@ -74,12 +65,9 @@ public class HomeFragment extends Fragment {
 				.countReceivedSelfies(new RequestResultCallbackAction() {
 					@Override
 					public void invoke(final RequestResult requestResult) {
-
 						current.runOnUiThread(new Runnable() {
 							@Override
 							public void run() {
-								connectionProgressDialog.dismiss();
-								
 								if (requestResult.getSuccess()) {
 									int count = (Integer) requestResult
 											.getValue();

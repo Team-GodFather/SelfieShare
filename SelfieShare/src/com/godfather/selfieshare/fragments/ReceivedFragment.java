@@ -46,7 +46,6 @@ public class ReceivedFragment extends Fragment {
         this.selfieAdapter = new SelfieAdapter(context, R.layout.listview_item_row, selfies, false);
 
         this.listView.setAdapter(selfieAdapter);
-        this.loadReceived(this.listView, this);
 
         return rootView;
     }

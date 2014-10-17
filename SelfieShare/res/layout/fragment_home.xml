@@ -24,10 +24,6 @@
         </TableRow>
         <TableRow android:layout_width="fill_parent" android:layout_height="wrap_content"
                   android:gravity="center_horizontal" android:id="@+id/TableRow">
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                      android:layout_span="6" android:padding="18dip"
-                      android:textSize="28sp"
-                      android:gravity="center_horizontal"/>
         </TableRow>
         <TableRow android:layout_width="fill_parent" android:layout_height="wrap_content"
                   android:gravity="center_horizontal" android:id="@+id/TableRow">

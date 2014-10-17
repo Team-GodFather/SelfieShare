@@ -47,7 +47,6 @@ public class RequestedFragment extends Fragment {
 		this.selfieAdapter = new SelfieAdapter(context, R.layout.listview_item_row, selfies, true);
 
 		this.listView.setAdapter(selfieAdapter);
-		this.loadRequests(this.listView, this);
 
 		return rootView;
 	}

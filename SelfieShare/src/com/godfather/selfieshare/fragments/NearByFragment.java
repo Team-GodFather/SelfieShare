@@ -29,9 +29,7 @@ public class NearByFragment extends Fragment implements AdapterView.OnItemClickL
     private ArrayList<SelfieUser> users;
     private UserAdapter usersAdapter;
 
-    private Message message;
     private QueryExecutor queryExecutor;
-    private ProgressDialog connectionProgressDialog;
     private ListView listView;
 
     public ArrayList<SelfieUser> getUsers() {
@@ -48,10 +46,7 @@ public class NearByFragment extends Fragment implements AdapterView.OnItemClickL
 
         Context context = getActivity();
 
-        this.message = new Message(context);
         this.queryExecutor = QueryExecutor.getInstance();
-        this.connectionProgressDialog = new ProgressDialog(context);
-        this.connectionProgressDialog.setMessage("Logging out...");
 
         this.listView = (ListView) rootView.findViewById(R.id.li_listView);
         this.users = new ArrayList<SelfieUser>();
@@ -64,13 +59,13 @@ public class NearByFragment extends Fragment implements AdapterView.OnItemClickL
         return rootView;
     }
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) {
-            this.loadUsers(this.listView, this);
-        }
-    }
+//    @Override
+//    public void setUserVisibleHint(boolean isVisibleToUser) {
+//        super.setUserVisibleHint(isVisibleToUser);
+//        if (isVisibleToUser) {
+//            this.loadUsers(this.listView, this);
+//        }
+//    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

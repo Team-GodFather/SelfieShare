@@ -3,7 +3,6 @@ package com.godfather.selfieshare.utils;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.UUID;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,8 +15,6 @@ import android.widget.TextView;
 
 import com.godfather.selfieshare.R;
 import com.godfather.selfieshare.models.SelfieUser;
-import com.telerik.everlive.sdk.core.result.RequestResult;
-import com.telerik.everlive.sdk.core.result.RequestResultCallbackAction;
 
 
 public class UserAdapter extends ArrayAdapter<SelfieUser> {
@@ -36,8 +33,6 @@ public class UserAdapter extends ArrayAdapter<SelfieUser> {
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = convertView;
         UserHolder holder = null;
-
-//        Log.d("AndroidSandbox", "getView for position -> " + position);
 
         if (row == null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
