@@ -67,22 +67,24 @@ public class SelfieAdapter extends ArrayAdapter<Selfie> {
         if (selfie != null) {
             SelfieUser user = isRequested ? selfie.get_To() : selfie.get_Owner();
 
-            String username = user.getUsername();
-            Number phoneNumber = user.getPhoneNumber();
-            selfie.setContactData(username, phoneNumber.toString());
+            if(user != null) {
+                String username = user.getUsername();
+                Number phoneNumber = user.getPhoneNumber();
+                selfie.setContactData(username, phoneNumber.toString());
 
-            holder.postText.setText(username);
+                holder.postText.setText(username);
 
-            DateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy hh:mm:ss");
-            holder.postCreateDate.setText(dateFormat.format(selfie.getCreatedAt()).toUpperCase());
+                DateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy hh:mm:ss");
+                holder.postCreateDate.setText(dateFormat.format(selfie.getCreatedAt()).toUpperCase());
 
 
-            String url = selfie.get_Picture().getUri();
-            if (_imagesCache.containsKey(url)) {
-                holder.userImage.setImageBitmap(_imagesCache.get(url));
-                selfie.setPictureBitmap(_imagesCache.get(url));
-            } else {
-                new DownloadFileFromURL(holder, selfie).execute(url);
+                String url = selfie.get_Picture().getUri();
+                if (_imagesCache.containsKey(url)) {
+                    holder.userImage.setImageBitmap(_imagesCache.get(url));
+                    selfie.setPictureBitmap(_imagesCache.get(url));
+                } else {
+                    new DownloadFileFromURL(holder, selfie).execute(url);
+                }
             }
         }
 

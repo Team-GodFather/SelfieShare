@@ -188,9 +188,9 @@ public class QueryExecutor {
 				.getAll()
 				.where(new ValueCondition("Id", currentUser.getId(),
 						ValueConditionOperator.NotEqualTo))
-				.where(conditions[0])
-				.where(conditions[1])
-				.where(conditions[2])
+//				.where(conditions[0])
+//				.where(conditions[1])
+//				.where(conditions[2])
 				.select(includedFieldsDefinition)
 				.executeAsync(
 						new RequestResultCallbackAction<ArrayList<SelfieUser>>() {
