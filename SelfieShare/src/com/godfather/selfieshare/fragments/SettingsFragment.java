@@ -69,7 +69,10 @@ public class SettingsFragment extends Fragment implements OnClickListener {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		datasource.close();
+
+        if(datasource != null) {
+            datasource.close();
+        }
 	}
 
 	public void onClick(View view) {
