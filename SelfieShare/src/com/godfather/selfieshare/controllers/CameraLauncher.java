@@ -96,8 +96,8 @@ public class CameraLauncher implements MediaScannerConnectionClient {
             int srcType = CAMERA;
             int destType = DATA_URL;
             this.saveToPhotoAlbum = false;
-            this.targetHeight = 0;
-            this.targetWidth = 0;
+            this.targetHeight = 480;
+            this.targetWidth = 320;
             this.encodingType = JPEG;
             this.mediaType = PICTURE;
             this.mQuality = 80;

@@ -12,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.godfather.selfieshare.R;
-import com.godfather.selfieshare.controllers.Message;
 import com.godfather.selfieshare.data.QueryExecutor;
 import com.godfather.selfieshare.models.Selfie;
 import com.godfather.selfieshare.utils.SelfieAdapter;
@@ -37,18 +36,15 @@ public class RequestedFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_requested,
-				container, false);
+		View rootView = inflater.inflate(R.layout.fragment_requested, container, false);
 
 		Context context = getActivity();
 
 		this.queryExecutor = QueryExecutor.getInstance();
 
-		this.listView = (ListView) rootView
-				.findViewById(R.id.requested_list_view);
+		this.listView = (ListView) rootView.findViewById(R.id.requested_list_view);
 		this.selfies = new ArrayList<Selfie>();
-		this.selfieAdapter = new SelfieAdapter(context,
-				R.layout.listview_item_row, selfies);
+		this.selfieAdapter = new SelfieAdapter(context, R.layout.listview_item_row, selfies, true);
 
 		this.listView.setAdapter(selfieAdapter);
 		this.loadRequests(this.listView, this);
@@ -64,13 +60,11 @@ public class RequestedFragment extends Fragment {
 		}
 	}
 
-	private void loadRequests(final ListView target,
-			final RequestedFragment listActivity) {
+	private void loadRequests(final ListView target, final RequestedFragment listActivity) {
 		this.queryExecutor
 				.getRequestedSelfies(new RequestResultCallbackAction<ArrayList<Selfie>>() {
 					@Override
-					public void invoke(
-							RequestResult<ArrayList<Selfie>> requestResult) {
+					public void invoke(RequestResult<ArrayList<Selfie>> requestResult) {
 						if (requestResult.getSuccess()) {
 							listActivity.getUsers().clear();
 							for (Selfie selfie : requestResult.getValue()) {

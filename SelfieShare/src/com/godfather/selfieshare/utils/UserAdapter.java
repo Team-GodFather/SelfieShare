@@ -59,7 +59,6 @@ public class UserAdapter extends ArrayAdapter<SelfieUser> {
             int imageId = user.getSex().trim().equals("Male") ? R.drawable.male : R.drawable.female; 
         	
         	holder.postText.setText(user.getUsername());
-            
             holder.userImage.setBackgroundResource(imageId);
             DateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
             holder.postCreateDate.setText(dateFormat.format(user.getCreatedAt()).toUpperCase());
@@ -73,32 +72,5 @@ public class UserAdapter extends ArrayAdapter<SelfieUser> {
         private TextView postText;
         private TextView userName;
         private TextView postCreateDate;
-    }
-
-    class MyRequestResultCallbackAction extends RequestResultCallbackAction {
-        private UserHolder postHolder;
-        private View parentView;
-
-        MyRequestResultCallbackAction(UserHolder postHolder, View parentView) {
-            this.postHolder = postHolder;
-            this.parentView = parentView;
-        }
-
-        @Override
-        public void invoke(RequestResult requestResult) {
-            if (requestResult.getSuccess()) {
-                final SelfieUser user = (SelfieUser) requestResult.getValue();
-
-                final String userName = user.getDisplayName();
-//                Log.d("AndroidSandbox", "get display nane for user -> " + user.getDisplayName());
-                this.parentView.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        postHolder.userName.setText(userName);
-                    }
-                });
-              
-            }
-        }
     }
 }
