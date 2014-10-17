@@ -35,6 +35,8 @@
         </activity>
         <activity android:name=".activities.UserDetailActivity" >
         </activity>
+        <activity android:name=".activities.SelfieDetailActivity" >
+        </activity>
 
         <service
             android:name="com.godfather.selfieshare.utils.MusicService"

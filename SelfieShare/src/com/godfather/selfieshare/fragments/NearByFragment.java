@@ -53,19 +53,18 @@ public class NearByFragment extends Fragment implements AdapterView.OnItemClickL
         this.usersAdapter = new UserAdapter(context, R.layout.listview_item_row, users);
 
         this.listView.setAdapter(usersAdapter);
-        this.loadUsers(this.listView, this);
         this.listView.setOnItemClickListener(this);
 
         return rootView;
     }
 
-//    @Override
-//    public void setUserVisibleHint(boolean isVisibleToUser) {
-//        super.setUserVisibleHint(isVisibleToUser);
-//        if (isVisibleToUser) {
-//            this.loadUsers(this.listView, this);
-//        }
-//    }
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            this.loadUsers(this.listView, this);
+        }
+    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

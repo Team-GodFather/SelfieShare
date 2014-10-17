@@ -75,8 +75,9 @@ public class SelfieAdapter extends ArrayAdapter<Selfie> {
             String url = selfie.get_Picture().getUri();
             if (_imagesCache.containsKey(url)) {
                 holder.userImage.setImageBitmap(_imagesCache.get(url));
+                selfie.setPictureBitmap(_imagesCache.get(url));
             } else {
-                new DownloadFileFromURL(holder).execute(url);
+                new DownloadFileFromURL(holder, selfie).execute(url);
             }
         }
 
@@ -95,9 +96,11 @@ public class SelfieAdapter extends ArrayAdapter<Selfie> {
 
     class DownloadFileFromURL extends AsyncTask<String, String, Bitmap> {
         SelfieHolder holder;
+        Selfie selfie;
 
-        public DownloadFileFromURL(SelfieHolder holder) {
+        public DownloadFileFromURL(SelfieHolder holder, Selfie selfie) {
             this.holder = holder;
+            this.selfie = selfie;
         }
 
         @Override
@@ -116,6 +119,7 @@ public class SelfieAdapter extends ArrayAdapter<Selfie> {
         @Override
         protected void onPostExecute(Bitmap bitmap) {
             this.holder.userImage.setImageBitmap(bitmap);
+            this.selfie.setPictureBitmap(bitmap);
         }
 
         private Bitmap downloadImage(String url) {

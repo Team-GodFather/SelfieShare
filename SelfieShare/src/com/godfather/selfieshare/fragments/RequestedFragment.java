@@ -3,22 +3,25 @@ package com.godfather.selfieshare.fragments;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.godfather.selfieshare.R;
+import com.godfather.selfieshare.activities.SelfieDetailActivity;
 import com.godfather.selfieshare.data.QueryExecutor;
 import com.godfather.selfieshare.models.Selfie;
 import com.godfather.selfieshare.utils.SelfieAdapter;
 import com.telerik.everlive.sdk.core.result.RequestResult;
 import com.telerik.everlive.sdk.core.result.RequestResultCallbackAction;
 
-public class RequestedFragment extends Fragment {
+public class RequestedFragment extends Fragment implements AdapterView.OnItemClickListener {
 	private ArrayList<Selfie> selfies;
 	private SelfieAdapter selfieAdapter;
 
@@ -47,6 +50,7 @@ public class RequestedFragment extends Fragment {
 		this.selfieAdapter = new SelfieAdapter(context, R.layout.listview_item_row, selfies, true);
 
 		this.listView.setAdapter(selfieAdapter);
+        this.listView.setOnItemClickListener(this);
 
 		return rootView;
 	}
@@ -83,4 +87,14 @@ public class RequestedFragment extends Fragment {
 					}
 				});
 	}
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Selfie selectedSelfie = (Selfie) parent.getAdapter().getItem(position);
+        if (selectedSelfie != null) {
+            Intent intent = new Intent(this.getActivity(), SelfieDetailActivity.class);
+            intent.putExtra("selfie", selectedSelfie);
+            startActivityForResult(intent, 1);
+        }
+    }
 }
