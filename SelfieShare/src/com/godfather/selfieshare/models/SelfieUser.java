@@ -8,7 +8,7 @@ import com.telerik.everlive.sdk.core.model.system.GeoPoint;
 @ServerType("Users")
 public class SelfieUser extends User {
     @ServerProperty("Sex")
-    private String sex;
+    private int sex;
     
     @ServerProperty("PhoneNumber")
     private Number phoneNumber;
@@ -43,11 +43,11 @@ public class SelfieUser extends User {
         this.onPropertyChanged("location", this.location, this.location = location);
 	}
 
-	public String getSex() {
+	public int getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(int sex) {
         this.onPropertyChanged("sex", this.sex, this.sex = sex);
     }
 }

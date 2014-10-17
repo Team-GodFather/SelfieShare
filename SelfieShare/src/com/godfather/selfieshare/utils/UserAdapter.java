@@ -51,7 +51,7 @@ public class UserAdapter extends ArrayAdapter<SelfieUser> {
 
         SelfieUser user = this.users.get(position);
         if (user != null) {
-            int imageId = user.getSex().trim().equals("Male") ? R.drawable.male : R.drawable.female; 
+            int imageId = user.getSex() == 1 ? R.drawable.male : R.drawable.female; 
         	
         	holder.postText.setText(user.getUsername());
             holder.userImage.setBackgroundResource(imageId);

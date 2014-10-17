@@ -18,10 +18,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 import com.godfather.selfieshare.R;
 import com.godfather.selfieshare.controllers.Message;
-import com.godfather.selfieshare.data.QueryExecutor;
 import com.godfather.selfieshare.models.Selfie;
 
 import java.util.ArrayList;
@@ -201,7 +199,8 @@ public class SelfieDetailActivity extends BaseActivity<SelfieDetailActivity> imp
 
     final Handler handler = new Handler();
     Runnable mLongPressed = new Runnable() {
-        public void run() {
+        @Override
+		public void run() {
             Log.i("", "Long press!");
             onLongClick();
         }
@@ -217,7 +216,8 @@ public class SelfieDetailActivity extends BaseActivity<SelfieDetailActivity> imp
                     .setMessage("Do you really want to add this person to contacts?")
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
+                        @Override
+						public void onClick(DialogInterface dialog, int whichButton) {
                             ArrayList<ContentProviderOperation> ops = new ArrayList<ContentProviderOperation>();
                             int rawContactInsertIndex = ops.size();
 

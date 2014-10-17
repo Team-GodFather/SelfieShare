@@ -1,7 +1,5 @@
 package com.godfather.selfieshare.controllers;
 
-import com.godfather.selfieshare.models.SexType;
-
 public class SignUpValidator {
     private final static int MIN_USERNAME_LENGTH = 5;
     private final static int MIN_PASSWORD_LENGTH = 5;

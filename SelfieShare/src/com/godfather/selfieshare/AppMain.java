@@ -3,6 +3,7 @@ package com.godfather.selfieshare;
 import android.app.Activity;
 import android.app.Application;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.location.LocationManager;
@@ -36,7 +37,7 @@ public class AppMain extends Application {
 
         // Music Background Service
         Intent intent = new Intent(this, MusicService.class);
-        this.bindService(intent, this.mConnection, this.BIND_AUTO_CREATE);
+        this.bindService(intent, this.mConnection, Context.BIND_AUTO_CREATE);
 
         // Camera Service
         this.cameraLauncher = new CameraLauncher(this);

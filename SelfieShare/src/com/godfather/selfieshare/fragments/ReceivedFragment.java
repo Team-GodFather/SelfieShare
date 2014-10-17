@@ -15,10 +15,8 @@ import android.widget.ListView;
 
 import com.godfather.selfieshare.R;
 import com.godfather.selfieshare.activities.SelfieDetailActivity;
-import com.godfather.selfieshare.activities.UserDetailActivity;
 import com.godfather.selfieshare.data.QueryExecutor;
 import com.godfather.selfieshare.models.Selfie;
-import com.godfather.selfieshare.models.SelfieUser;
 import com.godfather.selfieshare.utils.SelfieAdapter;
 import com.telerik.everlive.sdk.core.result.RequestResult;
 import com.telerik.everlive.sdk.core.result.RequestResultCallbackAction;

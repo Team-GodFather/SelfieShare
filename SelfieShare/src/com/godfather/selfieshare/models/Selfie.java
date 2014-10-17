@@ -1,11 +1,8 @@
 package com.godfather.selfieshare.models;
 
-import java.io.ByteArrayOutputStream;
-import java.util.Date;
 import java.util.UUID;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.telerik.everlive.sdk.core.model.base.ItemBase;
@@ -74,20 +71,24 @@ public class Selfie extends ItemBase implements Parcelable {
         this.contactData = new String[] { name, number };
     }
 
-    public int describeContents() {
+    @Override
+	public int describeContents() {
         return 0;
     }
 
-    public void writeToParcel(Parcel out, int flags) {
+    @Override
+	public void writeToParcel(Parcel out, int flags) {
         pictureBitmap.writeToParcel(out, 0);
         out.writeStringArray(this.contactData);
     }
 
     public static final Parcelable.Creator<Selfie> CREATOR = new Parcelable.Creator<Selfie>() {
-        public Selfie createFromParcel(Parcel in) {
+        @Override
+		public Selfie createFromParcel(Parcel in) {
             return new Selfie(in);
         }
-        public Selfie[] newArray(int size) {
+        @Override
+		public Selfie[] newArray(int size) {
             return new Selfie[size];
         }
     };

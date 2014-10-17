@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import android.content.Context;
@@ -24,6 +25,9 @@ import com.telerik.everlive.sdk.core.query.definition.FileField;
 import com.telerik.everlive.sdk.core.query.definition.UserSecretInfo;
 import com.telerik.everlive.sdk.core.query.definition.expand.ExpandDefinition;
 import com.telerik.everlive.sdk.core.query.definition.expand.ExpandDefinitionBase;
+import com.telerik.everlive.sdk.core.query.definition.filtering.Condition;
+import com.telerik.everlive.sdk.core.query.definition.filtering.compound.CompoundCondition;
+import com.telerik.everlive.sdk.core.query.definition.filtering.compound.CompoundConditionOperator;
 import com.telerik.everlive.sdk.core.query.definition.filtering.simple.ValueCondition;
 import com.telerik.everlive.sdk.core.query.definition.filtering.simple.ValueConditionOperator;
 import com.telerik.everlive.sdk.core.result.RequestResult;
@@ -130,13 +134,13 @@ public class QueryExecutor {
 		app.workWith().authentication().logout().executeAsync(null);
 	}
 
-	private ValueCondition[] getSettings(Context context) {
+	private List<Condition> getSettings(Context context) {
 		SettingsDataSource datasource = new SettingsDataSource(context);
 		datasource.open();
 		Settings settings = datasource.getSettings();
 		datasource.close();
-		
-		ValueCondition[] valueConditions = new ValueCondition[3];
+
+		List<Condition> valueConditions = new ArrayList<Condition>(4);
 
 		int sexOperatorValue = 0;
 
@@ -146,6 +150,8 @@ public class QueryExecutor {
 			sexOperatorValue = 1;
 		} else if (settings.getFemale() == 1) {
 			sexOperatorValue = 0;
+		} else {
+			sexOperatorValue = 2;
 		}
 
 		ValueConditionOperator sexConditionOperator = null;
@@ -161,16 +167,15 @@ public class QueryExecutor {
 			break;
 		case 2:
 			// Both
-			sexConditionOperator = ValueConditionOperator.LessThanOrEqualTo;
+			sexConditionOperator = ValueConditionOperator.GreaterThanOrEqualTo;
 			break;
 		}
 
-		valueConditions[0] = new ValueCondition("Sex", 1, sexConditionOperator);
-		valueConditions[1] = new ValueCondition("MinumumAge",
-				settings.getMinAge(),
-				ValueConditionOperator.GreaterThanOrEqualTo);
-		valueConditions[2] = new ValueCondition("MaximumAge",
-				settings.getMaxAge(), ValueConditionOperator.LessThan);
+		valueConditions.add(new ValueCondition("Sex", 1, sexConditionOperator));
+//		valueConditions.add(new ValueCondition("Age", settings.getMinAge(),
+//				ValueConditionOperator.GreaterThanOrEqualTo));
+//		valueConditions.add(new ValueCondition("Age", settings.getMaxAge(),
+//				ValueConditionOperator.LessThanOrEqualTo));
 
 		return valueConditions;
 	}
@@ -181,16 +186,20 @@ public class QueryExecutor {
 		includedFieldsDefinition.addIncludedFields("Id", "Username", "Age",
 				"Location", "Sex");
 
-		ValueCondition[] conditions = getSettings(context);
+		List<Condition> conditions = getSettings(context);
+
+		Condition containsCond = new ValueCondition("Id", currentUser.getId(),
+				ValueConditionOperator.NotEqualTo);
+
+		conditions.add((ValueCondition) containsCond);
+
+		Condition condition = new CompoundCondition(
+				CompoundConditionOperator.And, conditions);
 
 		app.workWith()
 				.users(SelfieUser.class)
 				.getAll()
-				.where(new ValueCondition("Id", currentUser.getId(),
-						ValueConditionOperator.NotEqualTo))
-//				.where(conditions[0])
-//				.where(conditions[1])
-//				.where(conditions[2])
+				.where(condition)
 				.select(includedFieldsDefinition)
 				.executeAsync(
 						new RequestResultCallbackAction<ArrayList<SelfieUser>>() {

@@ -7,7 +7,6 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.view.Window;
 import com.godfather.selfieshare.R;
 import com.godfather.selfieshare.data.QueryExecutor;
 import com.godfather.selfieshare.fragments.TabsPagerAdapter;

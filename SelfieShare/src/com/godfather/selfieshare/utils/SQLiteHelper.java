@@ -3,7 +3,6 @@ package com.godfather.selfieshare.utils;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 public class SQLiteHelper extends SQLiteOpenHelper {
 

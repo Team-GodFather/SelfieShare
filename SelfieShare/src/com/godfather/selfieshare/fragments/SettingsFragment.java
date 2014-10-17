@@ -75,6 +75,7 @@ public class SettingsFragment extends Fragment implements OnClickListener {
         }
 	}
 
+	@Override
 	public void onClick(View view) {
 		connectionProgressDialog.show();
 		int maleValue = male.isChecked() == true ? 1 : 0;

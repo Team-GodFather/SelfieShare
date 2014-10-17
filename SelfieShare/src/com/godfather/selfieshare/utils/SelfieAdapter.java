@@ -24,9 +24,6 @@ import android.widget.TextView;
 import com.godfather.selfieshare.R;
 import com.godfather.selfieshare.models.Selfie;
 import com.godfather.selfieshare.models.SelfieUser;
-import com.telerik.everlive.sdk.core.model.system.File;
-import com.telerik.everlive.sdk.core.result.RequestResult;
-import com.telerik.everlive.sdk.core.result.RequestResultCallbackAction;
 
 
 public class SelfieAdapter extends ArrayAdapter<Selfie> {
@@ -120,7 +117,8 @@ public class SelfieAdapter extends ArrayAdapter<Selfie> {
             return downloadImage(f_url[0]);
         }
 
-        protected void onProgressUpdate(String... progress) {
+        @Override
+		protected void onProgressUpdate(String... progress) {
         }
 
         @Override

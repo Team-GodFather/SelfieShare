@@ -9,9 +9,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import android.view.Window;
 import com.godfather.selfieshare.AppMain;
-import com.godfather.selfieshare.R;
 import com.godfather.selfieshare.data.QueryExecutor;
 import com.godfather.selfieshare.models.Selfie;
 import com.telerik.everlive.sdk.core.result.RequestResult;

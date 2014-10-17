@@ -21,8 +21,9 @@ import android.media.MediaScannerConnection;
 import android.media.MediaScannerConnection.MediaScannerConnectionClient;
 import android.net.Uri;
 import android.os.Environment;
-import android.provider.MediaStore;
-import android.util.Base64;
+import android.provider.BaseColumns;
+import android.provider.MediaStore.Images.ImageColumns;
+import android.provider.MediaStore.MediaColumns;
 import android.util.Log;
 import com.godfather.selfieshare.AppMain;
 import com.godfather.selfieshare.utils.ExifHelper;
@@ -591,7 +592,7 @@ public class CameraLauncher implements MediaScannerConnectionClient {
 
     private int getImageOrientation(Uri uri) {
         int rotate = 0;
-        String[] cols = {MediaStore.Images.Media.ORIENTATION};
+        String[] cols = {ImageColumns.ORIENTATION};
         try {
             Cursor cursor = appMain.getContentResolver().query(uri,
                     cols, null, null, null);
@@ -664,7 +665,7 @@ public class CameraLauncher implements MediaScannerConnectionClient {
      */
     private Uri getUriFromMediaStore() {
         ContentValues values = new ContentValues();
-        values.put(android.provider.MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
+        values.put(MediaColumns.MIME_TYPE, "image/jpeg");
         Uri uri;
         try {
             uri = this.appMain.getContentResolver().insert(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
@@ -792,7 +793,7 @@ public class CameraLauncher implements MediaScannerConnectionClient {
     private Cursor queryImgDB(Uri contentStore) {
         return this.appMain.getContentResolver().query(
                 contentStore,
-                new String[]{MediaStore.Images.Media._ID},
+                new String[]{BaseColumns._ID},
                 null,
                 null,
                 null);
@@ -840,7 +841,7 @@ public class CameraLauncher implements MediaScannerConnectionClient {
         // delete the duplicate file if the difference is 2 for file URI or 1 for Data URL
         if ((currentNumOfImages - numPics) == diff) {
             cursor.moveToLast();
-            int id = Integer.valueOf(cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media._ID)));
+            int id = Integer.valueOf(cursor.getString(cursor.getColumnIndex(BaseColumns._ID)));
             if (diff == 2) {
                 id--;
             }
@@ -900,7 +901,8 @@ public class CameraLauncher implements MediaScannerConnectionClient {
         conn.connect();
     }
 
-    public void onMediaScannerConnected() {
+    @Override
+	public void onMediaScannerConnected() {
         try {
             this.conn.scanFile(this.scanMe.toString(), "image/*");
         } catch (java.lang.IllegalStateException e) {
@@ -909,7 +911,8 @@ public class CameraLauncher implements MediaScannerConnectionClient {
 
     }
 
-    public void onScanCompleted(String path, Uri uri) {
+    @Override
+	public void onScanCompleted(String path, Uri uri) {
         this.conn.disconnect();
     }
 }
