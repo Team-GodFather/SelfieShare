@@ -13,8 +13,29 @@
         android:layout_height="0dp"
         android:layout_weight="7"
         android:shrinkColumns="*"
-        android:stretchColumns="*" >
+        android:stretchColumns="*" android:gravity="center_vertical">
 
+        <TableRow android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:gravity="center_horizontal" android:id="@+id/TableRow">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_span="6"
+                      android:padding="18dip" android:text="Hello and Welcome to SelfieShare"
+                      android:textColor="@android:color/background_dark" android:textSize="28sp"
+                      android:textStyle="bold" android:gravity="center_horizontal"/>
+        </TableRow>
+        <TableRow android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:gravity="center_horizontal" android:id="@+id/TableRow">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:layout_span="6" android:padding="18dip"
+                      android:textSize="28sp"
+                      android:gravity="center_horizontal"/>
+        </TableRow>
+        <TableRow android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:gravity="center_horizontal" android:id="@+id/TableRow">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_span="6"
+                      android:padding="18dip" android:text="Your current shares:"
+                      android:textColor="@android:color/black" android:textSize="21sp"
+                      android:gravity="center_horizontal"/>
+        </TableRow>
         <TableRow
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -23,20 +44,20 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_span="3"
+                android:layout_span="4"
                 android:padding="18dip"
-                android:text="Requested:"
-                android:textColor="@android:color/white"
-                android:textSize="20sp" />
+                android:text="Requested Selfies:"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"/>
 
             <TextView
                 android:id="@+id/requestedSelfies"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_span="3"
+                android:layout_span="2"
                 android:padding="18dip"
                 android:textColor="@android:color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp" android:layout_column="4" android:textStyle="bold"/>
         </TableRow>
 
         <TableRow
@@ -47,20 +68,20 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_span="3"
+                android:layout_span="4"
                 android:padding="18dip"
-                android:text="Received:"
-                android:textColor="@android:color/white"
-                android:textSize="20sp" />
+                android:text="Received Selfies:"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"/>
 
             <TextView
                 android:id="@+id/receivedSelfies"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_span="3"
+                android:layout_span="2"
                 android:padding="18dip"
                 android:textColor="@android:color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp" android:layout_column="4" android:textStyle="bold"/>
         </TableRow>
     </TableLayout>
 </LinearLayout>

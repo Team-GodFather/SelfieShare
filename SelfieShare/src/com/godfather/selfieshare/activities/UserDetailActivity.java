@@ -1,32 +1,40 @@
 package com.godfather.selfieshare.activities;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
 
+import android.view.Window;
+import com.godfather.selfieshare.AppMain;
 import com.godfather.selfieshare.R;
 import com.godfather.selfieshare.data.QueryExecutor;
 import com.godfather.selfieshare.models.Selfie;
 import com.telerik.everlive.sdk.core.result.RequestResult;
 import com.telerik.everlive.sdk.core.result.RequestResultCallbackAction;
 
-public class UserDetailActivity extends BaseActivity<UserDetailActivity>
-        implements OnClickListener {
+public class UserDetailActivity extends Activity {
 
+    protected AppMain appMain;
     private String userId;
     private QueryExecutor queryExecutor;
 
     @Override
-    public void onClick(View v) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        appMain = (AppMain)this.getApplicationContext();
+
+        queryExecutor = QueryExecutor.getInstance();
+
+        Bundle extras = getIntent().getExtras();
+        userId = extras.getString("userId");
+
+        appMain.setCurrentActivity(this);
         this.appMain.cameraLauncher.execute("takePicture", new RequestResultCallbackAction<byte[]>() {
             @Override
             public void invoke(RequestResult<byte[]> requestResult) {
@@ -42,18 +50,29 @@ public class UserDetailActivity extends BaseActivity<UserDetailActivity>
     }
 
     @Override
-    public void create() {
-        queryExecutor = QueryExecutor.getInstance();
-
-        this.findViewById(R.id.btnSendPicture).setOnClickListener(this);
-
-        Bundle extras = getIntent().getExtras();
-        userId = extras.getString("userId");
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        this.appMain.cameraLauncher.onActivityResult(requestCode, resultCode, intent);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        this.appMain.cameraLauncher.onActivityResult(requestCode, resultCode, intent);
+    protected void onDestroy() {
+        super.onDestroy();
+
+        clearReferences();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        clearReferences();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        appMain.setCurrentActivity(this);
     }
 
     private void uploadImage(final InputStream stream) {
@@ -92,8 +111,9 @@ public class UserDetailActivity extends BaseActivity<UserDetailActivity>
                 });
     }
 
-    @Override
-    protected int getActivityLayout() {
-        return R.layout.activity_user_detail;
+    private void clearReferences(){
+        Activity currActivity = appMain.getCurrentActivity();
+        if (currActivity != null && currActivity.equals(this))
+            appMain.setCurrentActivity(null);
     }
 }
