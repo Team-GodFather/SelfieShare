@@ -30,6 +30,7 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/requestedSelfies"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_span="3"
@@ -53,6 +54,7 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/receivedSelfies"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_span="3"
