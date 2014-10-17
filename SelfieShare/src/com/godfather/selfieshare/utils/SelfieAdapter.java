@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import com.godfather.selfieshare.R;
 import com.godfather.selfieshare.models.Selfie;
+import com.godfather.selfieshare.models.SelfieUser;
 import com.telerik.everlive.sdk.core.model.system.File;
 import com.telerik.everlive.sdk.core.result.RequestResult;
 import com.telerik.everlive.sdk.core.result.RequestResultCallbackAction;
@@ -64,7 +65,11 @@ public class SelfieAdapter extends ArrayAdapter<Selfie> {
 
         Selfie selfie = this.selfies.get(position);
         if (selfie != null) {
-            String username = isRequested ? selfie.get_To().getUsername() : selfie.get_Owner().getUsername();
+            SelfieUser user = isRequested ? selfie.get_To() : selfie.get_Owner();
+
+            String username = user.getUsername();
+            Number phoneNumber = user.getPhoneNumber();
+            selfie.setContactData(username, phoneNumber.toString());
 
             holder.postText.setText(username);
 

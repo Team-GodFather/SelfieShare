@@ -33,6 +33,9 @@ public class Selfie extends ItemBase implements Parcelable {
     @ServerProperty(value="PictureBitmap", writeToServer = false)
     private Bitmap pictureBitmap;
 
+    @ServerProperty(value="ContactData", writeToServer = false)
+    private String[] contactData;
+
     public UUID getTo() {
         return to;
     }
@@ -64,6 +67,12 @@ public class Selfie extends ItemBase implements Parcelable {
     public void setPictureBitmap(Bitmap pictureBitmap) {
         this.pictureBitmap = pictureBitmap;
     }
+    public String[] getContactData() {
+        return this.contactData;
+    }
+    public void setContactData(String name, String number) {
+        this.contactData = new String[] { name, number };
+    }
 
     public int describeContents() {
         return 0;
@@ -71,6 +80,7 @@ public class Selfie extends ItemBase implements Parcelable {
 
     public void writeToParcel(Parcel out, int flags) {
         pictureBitmap.writeToParcel(out, 0);
+        out.writeStringArray(this.contactData);
     }
 
     public static final Parcelable.Creator<Selfie> CREATOR = new Parcelable.Creator<Selfie>() {
@@ -86,5 +96,8 @@ public class Selfie extends ItemBase implements Parcelable {
 
     private Selfie(Parcel in) {
         pictureBitmap = Bitmap.CREATOR.createFromParcel(in);
+
+        this.contactData = new String[2];
+        in.readStringArray(this.contactData);
     }
 }

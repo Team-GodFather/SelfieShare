@@ -68,7 +68,7 @@ public class NearByFragment extends Fragment implements AdapterView.OnItemClickL
         if (selectedUser != null) {
         	Intent intent = new Intent(this.getActivity(), UserDetailActivity.class);
         	intent.putExtra("userId", selectedUser.getId().toString());
-        	startActivityForResult(intent, 1);
+        	startActivity(intent);
         }
     }
 

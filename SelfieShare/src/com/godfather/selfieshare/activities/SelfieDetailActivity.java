@@ -1,17 +1,30 @@
 package com.godfather.selfieshare.activities;
 
+import android.app.AlertDialog;
+import android.content.ContentProviderOperation;
+import android.content.ContentProviderResult;
+import android.content.DialogInterface;
+import android.content.OperationApplicationException;
+import android.database.Cursor;
 import android.graphics.Matrix;
 import android.graphics.PointF;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.RemoteException;
+import android.provider.ContactsContract;
 import android.util.FloatMath;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 import com.godfather.selfieshare.R;
 import com.godfather.selfieshare.controllers.Message;
 import com.godfather.selfieshare.data.QueryExecutor;
 import com.godfather.selfieshare.models.Selfie;
+
+import java.util.ArrayList;
 
 public class SelfieDetailActivity extends BaseActivity<SelfieDetailActivity> implements View.OnTouchListener {
     private static final String TAG = "Touch";
@@ -33,8 +46,8 @@ public class SelfieDetailActivity extends BaseActivity<SelfieDetailActivity> imp
     PointF mid = new PointF();
     float oldDist = 1f;
 
+    private Selfie selfie;
     private Message message;
-    private QueryExecutor queryExecutor;
 
     @Override
     protected int getActivityLayout() {
@@ -44,11 +57,10 @@ public class SelfieDetailActivity extends BaseActivity<SelfieDetailActivity> imp
     @Override
     protected void create() {
         this.message = new Message(this);
-        this.queryExecutor = QueryExecutor.getInstance();
 
         ImageView imageView = (ImageView)this.findViewById(R.id.imageView);
         Bundle extras = getIntent().getExtras();
-        Selfie selfie = extras.getParcelable("selfie");
+        selfie = extras.getParcelable("selfie");
         imageView.setImageBitmap(selfie.getPictureBitmap());
 
         // Bind click listeners
@@ -68,13 +80,17 @@ public class SelfieDetailActivity extends BaseActivity<SelfieDetailActivity> imp
         switch (event.getAction() & MotionEvent.ACTION_MASK)
         {
             case MotionEvent.ACTION_DOWN:   // first finger down only
+                matrix.set(view.getImageMatrix());
                 savedMatrix.set(matrix);
                 start.set(event.getX(), event.getY());
                 Log.d(TAG, "mode=DRAG"); // write to LogCat
                 mode = DRAG;
+
+                handler.postDelayed(mLongPressed, 1000);
                 break;
 
             case MotionEvent.ACTION_UP: // first finger lifted
+                handler.removeCallbacks(mLongPressed);
 
             case MotionEvent.ACTION_POINTER_UP: // second finger lifted
 
@@ -95,6 +111,7 @@ public class SelfieDetailActivity extends BaseActivity<SelfieDetailActivity> imp
                 break;
 
             case MotionEvent.ACTION_MOVE:
+                handler.removeCallbacks(mLongPressed);
 
                 if (mode == DRAG)
                 {
@@ -180,5 +197,82 @@ public class SelfieDetailActivity extends BaseActivity<SelfieDetailActivity> imp
 
         sb.append("]");
         Log.d("Touch Events ---------", sb.toString());
+    }
+
+    final Handler handler = new Handler();
+    Runnable mLongPressed = new Runnable() {
+        public void run() {
+            Log.i("", "Long press!");
+            onLongClick();
+        }
+    };
+
+
+    public boolean onLongClick() {
+        final String[] contactData = selfie.getContactData();
+
+        if(!isInContacts(contactData[1])) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Add contact")
+                    .setMessage("Do you really want to add this person to contacts?")
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            ArrayList<ContentProviderOperation> ops = new ArrayList<ContentProviderOperation>();
+                            int rawContactInsertIndex = ops.size();
+
+
+                            ops.add(ContentProviderOperation.newInsert(ContactsContract.RawContacts.CONTENT_URI)
+                                    .withValue(ContactsContract.RawContacts.ACCOUNT_TYPE, null)
+                                    .withValue(ContactsContract.RawContacts.ACCOUNT_NAME, null).build());
+                            ops.add(ContentProviderOperation
+                                    .newInsert(ContactsContract.Data.CONTENT_URI)
+                                    .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, rawContactInsertIndex)
+                                    .withValue(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
+                                    .withValue(ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME, contactData[0]) // Name of the person
+                                    .build());
+                            ops.add(ContentProviderOperation
+                                    .newInsert(ContactsContract.Data.CONTENT_URI)
+                                    .withValueBackReference(
+                                            ContactsContract.Data.RAW_CONTACT_ID, rawContactInsertIndex)
+                                    .withValue(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
+                                    .withValue(ContactsContract.CommonDataKinds.Phone.NUMBER, contactData[1]) // Number of the person
+                                    .withValue(ContactsContract.CommonDataKinds.Phone.TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE).build()); // Type of mobile number
+                            try {
+                                ContentProviderResult[] res = getContentResolver().applyBatch(ContactsContract.AUTHORITY, ops);
+
+                                message.print("Contact added successfully!");
+                            } catch (RemoteException e) {
+                                e.printStackTrace();
+                            } catch (OperationApplicationException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, null).show();
+        }
+        else {
+            message.print("Number already in contacts!");
+        }
+
+        return true;
+    }
+
+    private boolean isInContacts(String incommingNumber) {
+        Cursor cursor =null;
+        String name = null;
+        try {
+            Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(incommingNumber));
+            cursor = this.getContentResolver().query(uri, new String[] { ContactsContract.PhoneLookup.DISPLAY_NAME }, null, null, null);
+            if (cursor != null && cursor.moveToFirst()) {
+                name = cursor.getString(cursor.getColumnIndex(ContactsContract.PhoneLookup.DISPLAY_NAME));
+            }
+        } finally {
+            if(cursor!=null){
+                cursor.close();
+            }
+        }
+
+        return name != null;
     }
 }

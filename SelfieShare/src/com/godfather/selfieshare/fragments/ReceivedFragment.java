@@ -95,7 +95,7 @@ public class ReceivedFragment extends Fragment implements AdapterView.OnItemClic
         if (selectedSelfie != null) {
             Intent intent = new Intent(this.getActivity(), SelfieDetailActivity.class);
             intent.putExtra("selfie", selectedSelfie);
-            startActivityForResult(intent, 1);
+            startActivity(intent);
         }
     }
 }

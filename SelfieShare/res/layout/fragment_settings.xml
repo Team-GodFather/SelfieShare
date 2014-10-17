@@ -3,7 +3,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_purple"
+    android:background="@android:color/darker_gray"
     android:orientation="vertical"
     tools:context="com.godfather.selfieshare.activities.SettingsActivity"
     tools:ignore="MergeRootFrame" >
@@ -25,13 +25,13 @@
                 android:layout_height="wrap_content"
                 android:padding="18dip"
                 android:text="Male:"
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/black"
                 android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/settingsMale"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content" android:textColor="@android:color/black"/>
         </TableRow>
 
         <TableRow
@@ -44,13 +44,13 @@
                 android:layout_height="wrap_content"
                 android:padding="18dip"
                 android:text="Female:"
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/black"
                 android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/settingsFemale"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content" android:textColor="@android:color/black"/>
         </TableRow>
 
         <TableRow
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:padding="18dip"
                 android:text="Min age:"
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/black"
                 android:textSize="20sp" />
 
             <EditText
@@ -71,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number" >
+                android:inputType="number" android:textColor="@android:color/black">
             </EditText>
         </TableRow>
 
@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:padding="18dip"
                 android:text="Max age:"
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/black"
                 android:textSize="20sp" />
 
             <EditText
@@ -93,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number" >
+                android:inputType="number" android:textColor="@android:color/black">
             </EditText>
         </TableRow>
 
@@ -104,7 +104,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginTop="30dp"
-            android:text="Save" />
+            android:text="Save" android:textColor="@android:color/black" android:textStyle="bold"
+            android:background="@android:drawable/btn_default_small" android:clickable="true"/>
     </TableLayout>
 
 </ScrollView>

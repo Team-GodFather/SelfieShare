@@ -37,8 +37,7 @@ public class RequestedFragment extends Fragment implements AdapterView.OnItemCli
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_requested, container, false);
 
 		Context context = getActivity();
@@ -94,7 +93,7 @@ public class RequestedFragment extends Fragment implements AdapterView.OnItemCli
         if (selectedSelfie != null) {
             Intent intent = new Intent(this.getActivity(), SelfieDetailActivity.class);
             intent.putExtra("selfie", selectedSelfie);
-            startActivityForResult(intent, 1);
+            startActivity(intent);
         }
     }
 }
