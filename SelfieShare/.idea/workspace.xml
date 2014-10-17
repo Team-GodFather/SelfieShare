@@ -176,8 +176,8 @@
       <file leaf-file-name="SelfieDetailActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/godfather/selfieshare/activities/SelfieDetailActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="595" max-vertical-offset="3230">
-              <caret line="35" column="28" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.031894933" vertical-offset="697" max-vertical-offset="3230">
+              <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#639#666#0" expanded="true" />
@@ -887,12 +887,12 @@
       <workItem from="1413463288758" duration="8021000" />
       <workItem from="1413471629652" duration="24475000" />
       <workItem from="1413499401456" duration="10026000" />
-      <workItem from="1413509706562" duration="10546000" />
+      <workItem from="1413509706562" duration="10829000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89907000" />
+    <option name="totallyTimeSpent" value="90190000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1181" height="1040" extended-state="6" />
@@ -1421,8 +1421,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/godfather/selfieshare/activities/SelfieDetailActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="595" max-vertical-offset="3230">
-          <caret line="35" column="28" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
+        <state vertical-scroll-proportion="0.031894933" vertical-offset="697" max-vertical-offset="3230">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#639#666#0" expanded="true" />
