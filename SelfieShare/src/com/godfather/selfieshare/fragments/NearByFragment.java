@@ -1,6 +1,7 @@
 package com.godfather.selfieshare.fragments;
 
-import android.app.ProgressDialog;
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,16 +15,11 @@ import android.widget.ListView;
 
 import com.godfather.selfieshare.R;
 import com.godfather.selfieshare.activities.UserDetailActivity;
-import com.godfather.selfieshare.controllers.Message;
 import com.godfather.selfieshare.data.QueryExecutor;
 import com.godfather.selfieshare.models.SelfieUser;
 import com.godfather.selfieshare.utils.UserAdapter;
 import com.telerik.everlive.sdk.core.result.RequestResult;
 import com.telerik.everlive.sdk.core.result.RequestResultCallbackAction;
-
-import java.util.ArrayList;
-
-import org.w3c.dom.UserDataHandler;
 
 public class NearByFragment extends Fragment implements AdapterView.OnItemClickListener {
     private ArrayList<SelfieUser> users;
@@ -77,7 +73,7 @@ public class NearByFragment extends Fragment implements AdapterView.OnItemClickL
     }
 
     private void loadUsers(final ListView target, final NearByFragment listActivity) {
-        this.queryExecutor.getNearByUsers(new RequestResultCallbackAction<ArrayList<SelfieUser>>() {
+        this.queryExecutor.getNearByUsers(this.getActivity(), new RequestResultCallbackAction<ArrayList<SelfieUser>>() {
             @Override
             public void invoke(RequestResult<ArrayList<SelfieUser>> requestResult) {
                 if (requestResult.getSuccess()) {
