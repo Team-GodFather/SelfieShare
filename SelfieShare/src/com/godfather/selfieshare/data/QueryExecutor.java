@@ -186,20 +186,21 @@ public class QueryExecutor {
 		includedFieldsDefinition.addIncludedFields("Id", "Username", "Age",
 				"Location", "Sex");
 
-		List<Condition> conditions = getSettings(context);
+//		List<Condition> conditions = getSettings(context);
 
-		Condition containsCond = new ValueCondition("Id", currentUser.getId(),
-				ValueConditionOperator.NotEqualTo);
-
-		conditions.add((ValueCondition) containsCond);
-
-		Condition condition = new CompoundCondition(
-				CompoundConditionOperator.And, conditions);
+//		Condition containsCond = new ValueCondition("Id", currentUser.getId(),
+//				ValueConditionOperator.NotEqualTo);
+//
+//		conditions.add((ValueCondition) containsCond);
+//
+//		Condition condition = new CompoundCondition(
+//				CompoundConditionOperator.And, conditions);
 
 		app.workWith()
 				.users(SelfieUser.class)
 				.getAll()
-				.where(condition)
+				.where(new ValueCondition("Id", currentUser.getId(),
+                        ValueConditionOperator.NotEqualTo))
 				.select(includedFieldsDefinition)
 				.executeAsync(
 						new RequestResultCallbackAction<ArrayList<SelfieUser>>() {

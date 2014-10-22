@@ -15,10 +15,5 @@
         android:layout_height="match_parent"
         android:layout_weight="7"
         android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        android:background="@android:color/transparent"
-        android:cacheColorHint="@android:color/transparent"
-        android:fastScrollEnabled="true"
-        android:persistentDrawingCache="scrolling"
-        android:scrollingCache="false" />
+        android:paddingRight="12dp" />
 </LinearLayout>

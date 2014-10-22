@@ -46,7 +46,7 @@ public class MusicService extends Service {
             Notification notification = new Notification(icon, contentTitle, when);
             notification.flags |= Notification.FLAG_ONGOING_EVENT | Notification.FLAG_FOREGROUND_SERVICE;
 
-            Intent notificationIntent = new Intent(this, AppMain.class);
+            Intent notificationIntent = new Intent(this, LoginActivity.class);
             PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
             notification.setLatestEventInfo(this, contentTitle, contentMessage, contentIntent);
 
